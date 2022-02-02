@@ -1,42 +1,41 @@
-package com.kpaw.sakilaspringbootrest.domain;
+package com.kpaw.sakilaspringbootrest.domain.movie;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Table(name="category")
 @Entity
-@Table(name = "language")
-public class Language {
+public class Category {
 
     @Id
-    @Column(name = "language_id")
-    private Byte languageId;
+    @Column(name="category_id")
+    private Byte categoryId;
 
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_update")
+    @Column(name="last_update")
     private Date lastUpdate;
 
-    public Language(){
-
+    public Category() {
     }
 
-    public Language(Byte languageId, String name, Date lastUpdate) {
-        this.languageId = languageId;
+    public Category(Byte categoryId, String name, Date lastUpdate) {
+        this.categoryId = categoryId;
         this.name = name;
         this.lastUpdate = lastUpdate;
     }
 
-    public Byte getLanguageId() {
-        return languageId;
+    public Byte getCategoryId() {
+        return categoryId;
     }
 
-    public void setLanguageId(Byte languageId) {
-        this.languageId = languageId;
+    public void setCategoryId(Byte categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -57,8 +56,8 @@ public class Language {
 
     @Override
     public String toString() {
-        return "Language{" +
-                "languageId=" + languageId +
+        return "Category{" +
+                "categoryId=" + categoryId +
                 ", name='" + name + '\'' +
                 ", lastUpdate=" + lastUpdate +
                 '}';

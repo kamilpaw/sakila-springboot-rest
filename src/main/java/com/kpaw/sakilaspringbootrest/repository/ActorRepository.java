@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.repository;
 
-import com.kpaw.sakilaspringbootrest.domain.Actor;
+import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

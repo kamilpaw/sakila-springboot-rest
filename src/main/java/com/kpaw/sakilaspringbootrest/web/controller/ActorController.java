@@ -1,7 +1,7 @@
 package com.kpaw.sakilaspringbootrest.web.controller;
 
 
-import com.kpaw.sakilaspringbootrest.domain.Actor;
+import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
 import org.springframework.web.bind.annotation.*;
 

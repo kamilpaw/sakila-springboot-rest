@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.service;
 
-import com.kpaw.sakilaspringbootrest.domain.Language;
+import com.kpaw.sakilaspringbootrest.domain.movie.Language;
 
 import java.util.List;
 

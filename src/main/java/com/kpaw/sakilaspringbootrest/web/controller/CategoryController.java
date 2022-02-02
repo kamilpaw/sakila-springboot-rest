@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.web.controller;
 
-import com.kpaw.sakilaspringbootrest.domain.Category;
+import com.kpaw.sakilaspringbootrest.domain.movie.Category;
 import com.kpaw.sakilaspringbootrest.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
-import com.kpaw.sakilaspringbootrest.domain.Category;
+import com.kpaw.sakilaspringbootrest.domain.movie.Category;
 import com.kpaw.sakilaspringbootrest.repository.CategoryRepository;
 import com.kpaw.sakilaspringbootrest.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

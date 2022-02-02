@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.web.controller;
 
-import com.kpaw.sakilaspringbootrest.domain.Language;
+import com.kpaw.sakilaspringbootrest.domain.movie.Language;
 import com.kpaw.sakilaspringbootrest.service.LanguageService;
 import org.springframework.web.bind.annotation.*;
 

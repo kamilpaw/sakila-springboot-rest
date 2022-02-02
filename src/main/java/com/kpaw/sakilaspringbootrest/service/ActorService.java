@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.service;
 
-import com.kpaw.sakilaspringbootrest.domain.Actor;
+import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 
 import java.util.List;
 

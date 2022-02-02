@@ -1,6 +1,6 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
-import com.kpaw.sakilaspringbootrest.domain.Actor;
+import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.repository.ActorRepository;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;

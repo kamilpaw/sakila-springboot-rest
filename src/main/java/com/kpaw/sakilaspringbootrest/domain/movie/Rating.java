@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.domain;
+package com.kpaw.sakilaspringbootrest.domain.movie;
 
 public enum Rating {
     G("G"),
