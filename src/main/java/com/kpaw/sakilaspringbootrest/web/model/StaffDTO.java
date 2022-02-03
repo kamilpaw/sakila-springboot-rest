@@ -1,58 +1,39 @@
-package com.kpaw.sakilaspringbootrest.domain.location;
+package com.kpaw.sakilaspringbootrest.web.model;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import com.kpaw.sakilaspringbootrest.domain.location.Address;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "staff")
-public class Staff {
+public class StaffDTO {
 
-    @Id
-    @Column(name = "staff_id")
+
     private Byte staffId;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne
-    @JoinColumn(name = "address_id")
     private Address addresId;
 
-    @Column(name = "picture")
     private Byte[] picture;
 
-    @Column(name = "email")
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store storeId;
+    private Byte storeId;
 
-    @Column(name = "active")
     private Boolean active;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
     private String password;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_update")
     private Date lastUpdate;
 
-
-    public Staff(){
+    public StaffDTO(){
 
     }
 
-    public Staff(Byte staffId, String firstName, String lastName, Address addresId, Byte[] picture, String email, Store storeId, Boolean active, String username, String password, Date lastUpdate) {
+    public StaffDTO(Byte staffId, String firstName, String lastName, Address addresId, Byte[] picture, String email, Byte storeId, Boolean active, String username, String password, Date lastUpdate) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -114,11 +95,11 @@ public class Staff {
         this.email = email;
     }
 
-    public Store getStoreId() {
+    public Byte getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Store storeId) {
+    public void setStoreId(Byte storeId) {
         this.storeId = storeId;
     }
 
@@ -152,15 +133,5 @@ public class Staff {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", addresId=" + addresId +
-                ", email='" + email + '\'' +
-                '}';
     }
 }
