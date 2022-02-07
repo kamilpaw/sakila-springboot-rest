@@ -68,4 +68,14 @@ public class Store {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "storeId=" + storeId +
+                ", managerStaffId=" + managerStaffId +
+                ", addressId=" + addressId +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }

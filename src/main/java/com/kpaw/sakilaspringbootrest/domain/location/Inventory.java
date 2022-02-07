@@ -15,11 +15,11 @@ public class Inventory {
     @Column(name = "inventory_id")
     private Integer inventoryId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "film_id")
     private Film filmId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "store_id")
     private Store storeId;
 
@@ -69,5 +69,14 @@ public class Inventory {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" +
+                "inventoryId=" + inventoryId +
+                ", filmId=" + filmId +
+                ", storeId=" + storeId +
+                '}';
     }
 }
