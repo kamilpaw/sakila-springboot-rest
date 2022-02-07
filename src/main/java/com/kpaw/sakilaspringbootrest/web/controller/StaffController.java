@@ -3,7 +3,7 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
 import com.kpaw.sakilaspringbootrest.service.StaffService;
-import com.kpaw.sakilaspringbootrest.web.mapper.StaffMapper;
+import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import com.kpaw.sakilaspringbootrest.web.model.StaffDTO;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +13,12 @@ import java.util.stream.Collectors;
 @RestController
 public class StaffController {
 
-    private StaffMapper mapper;
+    private DTOMapper mapper;
     private StaffService staffService;
 
-    public StaffController(StaffService staffService, StaffMapper staffMapper){
+    public StaffController(StaffService staffService, DTOMapper DTOMapper){
         this.staffService = staffService;
-        this.mapper = staffMapper;
+        this.mapper = DTOMapper;
     }
 
     @GetMapping("/staff")
