@@ -1,7 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Language;
-import com.kpaw.sakilaspringbootrest.repository.LanguageRepository;
+import com.kpaw.sakilaspringbootrest.repository.movie.LanguageRepository;
 import com.kpaw.sakilaspringbootrest.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

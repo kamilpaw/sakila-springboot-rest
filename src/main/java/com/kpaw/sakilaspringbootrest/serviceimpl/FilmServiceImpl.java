@@ -1,7 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
-import com.kpaw.sakilaspringbootrest.repository.FilmRepository;
+import com.kpaw.sakilaspringbootrest.repository.movie.FilmRepository;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,14 @@ public class FilmServiceImpl implements FilmService {
 
     private FilmRepository filmRepository;
 
+
     @Autowired
-    public FilmServiceImpl(FilmRepository filmRepository){
+    public FilmServiceImpl(FilmRepository filmRepository) {
         this.filmRepository = filmRepository;
     }
 
     @Override
-    public List<Film> findall() {
+    public List<Film> findAll() {
         return filmRepository.findAll();
     }
 
@@ -39,6 +40,7 @@ public class FilmServiceImpl implements FilmService {
         filmRepository.save(film);
     }
 
+
     @Override
     public void deleteById(int id) {
         filmRepository.deleteById(id);
@@ -53,4 +55,27 @@ public class FilmServiceImpl implements FilmService {
     public List<Film> findFilmsByCategoryId(int id) {
         return filmRepository.findFilmsByCategoryId(id);
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,13 +13,13 @@ public enum Rating {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public static Rating getByName(String name){
-        for(Rating rating : values()){
-            if(rating.getName().equals(name)){
+    public static Rating getByName(String name) {
+        for (Rating rating : values()) {
+            if (rating.getName().equals(name)) {
                 return rating;
             }
         }

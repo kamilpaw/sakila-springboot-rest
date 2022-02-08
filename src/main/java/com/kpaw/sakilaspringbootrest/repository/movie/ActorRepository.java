@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.repository;
+package com.kpaw.sakilaspringbootrest.repository.movie;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import org.springframework.data.jpa.repository.JpaRepository;

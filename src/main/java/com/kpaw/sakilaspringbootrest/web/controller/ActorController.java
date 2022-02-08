@@ -46,7 +46,7 @@ public class ActorController {
         return "Actor with Id " + actorId + " deleted";
     }
 
-    @GetMapping("/films/{filmId}/actors")
+    @GetMapping("/actors/films/{filmId}")
     public List<Actor> findActorsByFilmId(@PathVariable int filmId) {
         return actorService.findActorsByFilmId(filmId);
     }

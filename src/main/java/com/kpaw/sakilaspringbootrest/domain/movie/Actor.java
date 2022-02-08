@@ -5,26 +5,32 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@Table(name="actor")
+@Table(name = "actor")
 @Entity
 public class Actor {
 
     @Id
-    @Column(name="actor_id")
+    @Column(name = "actor_id")
     private Short actorId;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="last_update")
+    @Column(name = "last_update")
     private Date lastUpdate;
 
-    public Actor(){
+    public Actor() {
+    }
+
+    public Actor(Short actorId, String firstName, String lastName) {
+        this.actorId = actorId;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Actor(Short actorId, String firstName, String lastName, Date lastUpdate) {

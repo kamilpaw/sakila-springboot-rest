@@ -16,12 +16,12 @@ public class FilmController {
     }
 
     @GetMapping("/films")
-    public List<Film> findAll() {
-        return filmService.findall();
+    public List<Film> findAllFilmDTOs() {
+        return filmService.findAll();
     }
 
     @GetMapping("/films/{filmId}")
-    public Film findById(@PathVariable int filmId) {
+    public Film findFilmDTOById(@PathVariable int filmId) {
         return filmService.findByID(filmId);
     }
 
@@ -44,12 +44,12 @@ public class FilmController {
         return "film with id " + filmId + " deleted";
     }
 
-    @GetMapping("actors/{actorId}/films")
-    public List<Film> findFilmByActorId(@PathVariable int actorId) {
+    @GetMapping("films/actors/{actorId}")
+    public List<Film> findFilmsByActorId(@PathVariable int actorId) {
         return filmService.findFilmsByActorId(actorId);
     }
 
-    @GetMapping("categories/{categoryId}/films")
+    @GetMapping("films/categories/{categoryId}")
     public List<Film> findFilmsByCategoryId(@PathVariable int categoryId) {
         return filmService.findFilmsByCategoryId(categoryId);
     }

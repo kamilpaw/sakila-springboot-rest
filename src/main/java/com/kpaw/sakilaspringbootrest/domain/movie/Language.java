@@ -1,8 +1,9 @@
 package com.kpaw.sakilaspringbootrest.domain.movie;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -16,19 +17,13 @@ public class Language {
     @Column(name = "name")
     private String name;
 
-    @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_update")
-    private Date lastUpdate;
-
-    public Language(){
+    public Language() {
 
     }
 
     public Language(Byte languageId, String name, Date lastUpdate) {
         this.languageId = languageId;
         this.name = name;
-        this.lastUpdate = lastUpdate;
     }
 
     public Byte getLanguageId() {
@@ -47,20 +42,11 @@ public class Language {
         this.name = name;
     }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     @Override
     public String toString() {
         return "Language{" +
                 "languageId=" + languageId +
                 ", name='" + name + '\'' +
-                ", lastUpdate=" + lastUpdate +
                 '}';
     }
 }

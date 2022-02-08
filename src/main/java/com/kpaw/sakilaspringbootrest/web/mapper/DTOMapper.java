@@ -3,6 +3,7 @@ package com.kpaw.sakilaspringbootrest.web.mapper;
 import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
 import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
+import com.kpaw.sakilaspringbootrest.service.ActorService;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
 import com.kpaw.sakilaspringbootrest.service.StoreService;
 import com.kpaw.sakilaspringbootrest.web.model.CustomerDTO;
@@ -16,11 +17,13 @@ public class DTOMapper {
 
     StoreService storeService;
     FilmService filmService;
+    ActorService actorService;
 
     @Autowired
-    DTOMapper(StoreService storeService, FilmService filmService) {
+    DTOMapper(StoreService storeService, FilmService filmService, ActorService actorService) {
         this.storeService = storeService;
         this.filmService = filmService;
+        this.actorService = actorService;
     }
 
     public StaffDTO toStaffDTO(Staff staff) {
@@ -58,4 +61,5 @@ public class DTOMapper {
         return new Inventory(inventoryDTO.getInventoryId(), filmService.findByID(inventoryDTO.getFilmId()), storeService.finById(inventoryDTO.getStoreId()),
                 inventoryDTO.getLastUpdate());
     }
+
 }
