@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.InventoryRepository;
 import com.kpaw.sakilaspringbootrest.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,10 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public Inventory findById(int id) {
         Optional<Inventory> result = inventoryRepository.findById(id);
-    /*    if(!result.isPresent()){
-            throw new InventoryNotFoundException();
+        if (!result.isPresent()) {
+            throw new EntityNotFoundExc("Inventory", id);
         }
-     */
+
         return result.get();
     }
 

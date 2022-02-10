@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.FilmRepository;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,9 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public Film findByID(int id) {
         Optional<Film> result = filmRepository.findById(id);
-    /*    if (result.isPresent()){
-            throw new FilmNotFoundException ("Film with id " + id + " not found");
+        if (!result.isPresent()){
+            throw new EntityNotFoundExc("Film", id);
         }
-     */
         return result.get();
     }
 

@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.StaffRepository;
 import com.kpaw.sakilaspringbootrest.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public Staff findById(byte id) {
         Optional<Staff> result = staffRepository.findById(id);
-        //Exception when result not present
+        if(!result.isPresent()){
+            throw new EntityNotFoundExc("Staff", id);
+        }
         return result.get();
     }
 

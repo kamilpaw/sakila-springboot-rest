@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,9 @@ public class ActorServiceImpl implements ActorService {
     @Override
     public Actor findById(short theId) {
         Optional<Actor> result = actorRepository.findById(theId);
-      /*  if(!result.isPresent()){
-            throw new ActorNotFoundException();
+       if(!result.isPresent()){
+            throw new EntityNotFoundExc("Actor", theId);
         }
-       */
         Actor actor = result.get();
         return actor;
     }

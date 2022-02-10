@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Language;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.LanguageRepository;
 import com.kpaw.sakilaspringbootrest.service.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class LanguageServiceImpl implements LanguageService {
     private LanguageRepository languageRepository;
 
     @Autowired
-    public LanguageServiceImpl(LanguageRepository languageRepository){
+    public LanguageServiceImpl(LanguageRepository languageRepository) {
         this.languageRepository = languageRepository;
     }
 
@@ -27,10 +28,10 @@ public class LanguageServiceImpl implements LanguageService {
     @Override
     public Language findById(byte id) {
         Optional<Language> result = languageRepository.findById(id);
-   /*     if (!result.isPresent()){
-            throw new LanguageNotFoundException("Language with id " + id + " not found");
+        if (!result.isPresent()) {
+            throw new EntityNotFoundExc("Language", id);
         }
-    */
+
         Language language = result.get();
         return language;
     }

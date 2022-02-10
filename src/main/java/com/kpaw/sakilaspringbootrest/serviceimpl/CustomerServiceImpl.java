@@ -1,6 +1,7 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
+import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.CustomerRepository;
 import com.kpaw.sakilaspringbootrest.service.CustomerService;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findById(short id) {
         Optional<Customer> result = customerRepository.findById(id);
-        // if result not present throw exception
+        if (!result.isPresent()){
+            throw new EntityNotFoundExc("Customer", id);
+        }
         return result.get();
     }
 
