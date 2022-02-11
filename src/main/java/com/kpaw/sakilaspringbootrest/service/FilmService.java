@@ -1,13 +1,15 @@
 package com.kpaw.sakilaspringbootrest.service;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
+import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 
 public interface FilmService {
 
 
-    List<Film> findAll();
+    FilmPagedList findAll(PageRequest pageRequest);
 
     Film findByID(int id);
 
@@ -15,9 +17,11 @@ public interface FilmService {
 
     void deleteById(int id);
 
-    List<Film> findFilmsByActorId(int id);
+    FilmPagedList findFilmsByActorId(int id, PageRequest pageRequest);
 
     List<Film> findFilmsByCategoryId(int id);
+
+    FilmPagedList listFilmsByTitle(String title, PageRequest pageRequest);
 
 
 }
