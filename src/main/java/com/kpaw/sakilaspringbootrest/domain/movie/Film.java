@@ -14,6 +14,7 @@ public class Film {
 
     @Id
     @Column(name = "film_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer filmId;
 
     @Column(name = "title")
@@ -56,13 +57,13 @@ public class Film {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "film_actor",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private List<Actor> actors;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "film_category",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
@@ -203,9 +204,7 @@ public class Film {
         if (specialFeatures == null)
             return Collections.emptySet();
         else
-            return Collections.unmodifiableSet(
-                    new HashSet<String>(Arrays.asList(specialFeatures.split(",")))
-            );
+            return Set.of(specialFeatures.split(","));
     }
 
     public void setSpecialFeatures(Set<String> specialFeatures) {

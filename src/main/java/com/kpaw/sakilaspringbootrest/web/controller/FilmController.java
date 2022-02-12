@@ -4,93 +4,71 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Film;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
 import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageNumber;
+import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageSize;
 
-@RequestMapping("/films")
+
 @RestController
 public class FilmController {
 
-
-    private static final Integer DEFAULT_PAGE_NUMBER = 0;
-    private static final Integer DEFAULT_PAGE_SIZE = 5;
     private final FilmService filmService;
 
     public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
 
-    @GetMapping("")
+    @GetMapping("films")
     public FilmPagedList findAllFilms(@RequestParam(required = false) Integer pageNumber,
                                       @RequestParam(required = false) Integer pageSize) {
-        if (pageNumber == null || pageNumber < 0) {
-            pageNumber = DEFAULT_PAGE_NUMBER;
-        }
-        if (pageSize == null || pageSize < 1) {
-            pageSize = DEFAULT_PAGE_SIZE;
-        }
-        return filmService.findAll(PageRequest.of(pageNumber, pageSize));
+        return filmService.findAll(PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 
-    @GetMapping("/{filmId}")
+
+    @GetMapping("/films/{filmId}")
     public Film findFilmById(@PathVariable int filmId) {
         return filmService.findByID(filmId);
     }
 
-    @PostMapping("")
-    public ResponseEntity<Film> saveNewFilm(@RequestBody Film film) {
+    @PostMapping("/films")
+    public Film saveNewFilm(@RequestBody Film film) {
         film.setFilmId(null);
         filmService.save(film);
-        return new ResponseEntity<>(film, HttpStatus.CREATED);
+        return film;
     }
 
-    @PutMapping("")
-    public ResponseEntity<Film> updateFilm(@RequestBody Film film) {
+    @PutMapping("/films")
+    public Film updateFilm(@RequestBody Film film) {
         filmService.save(film);
-        return new ResponseEntity<>(film, HttpStatus.NO_CONTENT);
+        return film;
     }
 
-    @DeleteMapping("/{filmId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/films/{filmId}")
     public String deleteFilm(@PathVariable int filmId) {
         filmService.deleteById(filmId);
         return "film with id " + filmId + " deleted";
     }
 
-    @GetMapping("/actors/{actorId}")
+    @GetMapping("/films/actors/{actorId}")
     public FilmPagedList findFilmsByActorId(@PathVariable int actorId,
                                             @RequestParam(required = false) Integer pageNumber,
                                             @RequestParam(required = false) Integer pageSize) {
-        if (pageNumber == null || pageNumber < 0) {
-            pageNumber = DEFAULT_PAGE_NUMBER;
-        }
-        if (pageSize == null || pageSize < 1) {
-            pageSize = DEFAULT_PAGE_SIZE;
-        }
-
-        return filmService.findFilmsByActorId(actorId, PageRequest.of(pageNumber, pageSize));
+        return filmService.findFilmsByActorId(actorId, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 
-    @GetMapping("/categories/{categoryId}")
-    public List<Film> findFilmsByCategoryId(@PathVariable int categoryId) {
-        return filmService.findFilmsByCategoryId(categoryId);
+    @GetMapping("/films/categories/{categoryId}")
+    public FilmPagedList findFilmsByCategoryId(@PathVariable int categoryId,
+                                               @RequestParam(required = false) Integer pageNumber,
+                                               @RequestParam(required = false) Integer pageSize) {
+        return filmService.findFilmsByCategoryId(categoryId, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 
-    @GetMapping("/search")
-    public FilmPagedList listFilms(@RequestParam(required = false) Integer pageNumber,
+    @GetMapping("/films/search")
+    public FilmPagedList searchFilmsByTitle(@RequestParam(required = false) Integer pageNumber,
                                    @RequestParam(required = false) Integer pageSize,
-                                   @RequestParam(required = false) String title) {
-        if (pageNumber == null || pageNumber < 0) {
-            pageNumber = DEFAULT_PAGE_NUMBER;
-        }
-        if (pageSize == null || pageSize < 1) {
-            pageSize = DEFAULT_PAGE_SIZE;
-        }
-
-        return filmService.listFilmsByTitle(title, PageRequest.of(pageNumber, pageSize));
+                                   @RequestParam(defaultValue = "") String title) {
+        return filmService.findFilmsByTitle(title, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
 
     }
 }

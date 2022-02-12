@@ -8,18 +8,14 @@ import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class FilmServiceImpl implements FilmService {
 
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
 
 
     @Autowired
@@ -36,13 +32,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public FilmPagedList listFilmsByTitle(String title, PageRequest pageRequest) {
-        Page<Film> filmPage;
-        if (title == null) {
-            filmPage = filmRepository.findAll(pageRequest);
-        } else {
-            filmPage = filmRepository.findAllByTitle(title, pageRequest);
-        }
+    public FilmPagedList findFilmsByTitle(String title, PageRequest pageRequest) {
+        Page<Film> filmPage = filmRepository.findByTitleContainsAllIgnoreCase(title, pageRequest);
         return new FilmPagedList(filmPage.getContent(),
                 PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
                 filmPage.getTotalElements());
@@ -57,9 +48,18 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
+    public FilmPagedList findFilmsByCategoryId(int id, PageRequest pageRequest) {
+        Page<Film> filmPage = filmRepository.findFilmsByCategoryId(id, pageRequest);
+        return new FilmPagedList(filmPage.getContent(),
+                PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
+                filmPage.getTotalElements());
+    }
+
+
+    @Override
     public Film findByID(int id) {
         Optional<Film> result = filmRepository.findById(id);
-        if (!result.isPresent()) {
+        if (result.isEmpty()) {
             throw new EntityNotFoundExc("Film", id);
         }
         return result.get();
@@ -74,13 +74,6 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public void deleteById(int id) {
         filmRepository.deleteById(id);
-    }
-
-
-
-    @Override
-    public List<Film> findFilmsByCategoryId(int id) {
-        return filmRepository.findFilmsByCategoryId(id);
     }
 
 

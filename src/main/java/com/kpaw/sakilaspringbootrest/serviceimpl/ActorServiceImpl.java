@@ -4,10 +4,12 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
+import com.kpaw.sakilaspringbootrest.web.model.ActorPagedList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,23 +18,25 @@ public class ActorServiceImpl implements ActorService {
     ActorRepository actorRepository;
 
     @Autowired
-    public ActorServiceImpl(ActorRepository actorRepository){
+    public ActorServiceImpl(ActorRepository actorRepository) {
         this.actorRepository = actorRepository;
     }
 
     @Override
-    public List<Actor> findAll() {
-        return actorRepository.findAll();
+    public ActorPagedList findAll(PageRequest pageRequest) {
+        Page<Actor> actorPage = actorRepository.findAll(pageRequest);
+        return new ActorPagedList(actorPage.getContent(),
+                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
+                actorPage.getTotalElements());
     }
 
     @Override
     public Actor findById(short theId) {
         Optional<Actor> result = actorRepository.findById(theId);
-       if(!result.isPresent()){
+        if (result.isEmpty()) {
             throw new EntityNotFoundExc("Actor", theId);
         }
-        Actor actor = result.get();
-        return actor;
+        return result.get();
     }
 
     @Override
@@ -46,7 +50,18 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public List<Actor> findActorsByFilmId(int id) {
-        return actorRepository.findActorsByFilmId(id);
+    public ActorPagedList findActorsByFilmId(int id, PageRequest pageRequest) {
+        Page<Actor> actorPage = actorRepository.findActorsByFilmId(id, pageRequest);
+        return new ActorPagedList(actorPage.getContent(),
+                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
+                actorPage.getTotalElements());
+    }
+
+    @Override
+    public ActorPagedList findActorsByFirstNameAndLastName(String name, PageRequest pageRequest) {
+        Page<Actor> actorPage = actorRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(name, name, pageRequest);
+        return new ActorPagedList(actorPage.getContent(),
+                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
+                actorPage.getTotalElements());
     }
 }

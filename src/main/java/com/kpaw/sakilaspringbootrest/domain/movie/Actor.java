@@ -11,6 +11,7 @@ public class Actor {
 
     @Id
     @Column(name = "actor_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short actorId;
 
     @Column(name = "first_name")

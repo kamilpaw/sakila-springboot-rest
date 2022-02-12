@@ -4,8 +4,6 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Film;
 import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
-
 public interface FilmService {
 
 
@@ -19,9 +17,9 @@ public interface FilmService {
 
     FilmPagedList findFilmsByActorId(int id, PageRequest pageRequest);
 
-    List<Film> findFilmsByCategoryId(int id);
+    FilmPagedList findFilmsByCategoryId(int id, PageRequest pageRequest);
 
-    FilmPagedList listFilmsByTitle(String title, PageRequest pageRequest);
+    FilmPagedList findFilmsByTitle(String title, PageRequest pageRequest);
 
 
 }

@@ -3,9 +3,12 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
+import com.kpaw.sakilaspringbootrest.web.model.ActorPagedList;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageNumber;
+import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageSize;
 
 @RestController
 public class ActorController {
@@ -17,8 +20,10 @@ public class ActorController {
     }
 
     @GetMapping("/actors")
-    public List<Actor> findAll() {
-        return actorService.findAll();
+    public ActorPagedList findAll(@RequestParam(required = false) Integer pageNumber,
+                                  @RequestParam(required = false) Integer pageSize) {
+
+        return actorService.findAll(PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 
     @GetMapping("/actors/{actorId}")
@@ -28,16 +33,16 @@ public class ActorController {
 
 
     @PostMapping("/actors")
-    public String saveNewActor(@RequestBody Actor actor) {
-        actor.setActorId((short) 0);
+    public Actor saveNewActor(@RequestBody Actor actor) {
+        actor.setActorId((null));
         actorService.save(actor);
-        return "Saved new actor: " + actor;
+        return actor;
     }
 
     @PutMapping("/actors")
-    public String updateActor(@RequestBody Actor actor) {
+    public Actor updateActor(@RequestBody Actor actor) {
         actorService.save(actor);
-        return "Updated actor: " + actor;
+        return actor;
     }
 
     @DeleteMapping("/actors/{actorId}")
@@ -47,7 +52,16 @@ public class ActorController {
     }
 
     @GetMapping("/actors/films/{filmId}")
-    public List<Actor> findActorsByFilmId(@PathVariable int filmId) {
-        return actorService.findActorsByFilmId(filmId);
+    public ActorPagedList findActorsByFilmId(@PathVariable int filmId,
+                                             @RequestParam(required = false) Integer pageNumber,
+                                             @RequestParam(required = false) Integer pageSize) {
+        return actorService.findActorsByFilmId(filmId, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
+    }
+
+    @GetMapping("/actors/search")
+    public ActorPagedList searchActorsByFirstNameAndLastName(@RequestParam(required = false) Integer pageNumber,
+                                                             @RequestParam(required = false) Integer pageSize,
+                                                             @RequestParam(defaultValue = "") String name){
+        return actorService.findActorsByFirstNameAndLastName(name, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 }

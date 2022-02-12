@@ -4,7 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "language")
@@ -21,7 +20,7 @@ public class Language {
 
     }
 
-    public Language(Byte languageId, String name, Date lastUpdate) {
+    public Language(Byte languageId, String name) {
         this.languageId = languageId;
         this.name = name;
     }
