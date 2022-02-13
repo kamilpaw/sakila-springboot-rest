@@ -1,10 +1,7 @@
 package com.kpaw.sakilaspringbootrest.web.model;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Address;
-import com.kpaw.sakilaspringbootrest.domain.location.Store;
-import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -21,7 +18,7 @@ public class CustomerDTO {
 
     private String email;
 
-    private Address addressId;
+    private Address address;
 
     private Boolean active;
 
@@ -33,13 +30,13 @@ public class CustomerDTO {
 
     }
 
-    public CustomerDTO(Short customerId, Byte storeId, String firstName, String lastName, String email, Address addressId, Boolean active, Timestamp createDate, Date lastUpdate) {
+    public CustomerDTO(Short customerId, Byte storeId, String firstName, String lastName, String email, Address address, Boolean active, Timestamp createDate, Date lastUpdate) {
         this.customerId = customerId;
         this.storeId = storeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.addressId = addressId;
+        this.address = address;
         this.active = active;
         this.createDate = createDate;
         this.lastUpdate = lastUpdate;
@@ -85,12 +82,12 @@ public class CustomerDTO {
         this.email = email;
     }
 
-    public Address getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Boolean getActive() {

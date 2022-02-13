@@ -1,10 +1,7 @@
 package com.kpaw.sakilaspringbootrest.domain.movie;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "category")
 @Entity
@@ -12,6 +9,7 @@ public class Category {
 
     @Id
     @Column(name = "category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte category_id;
 
     @Column(name = "name")

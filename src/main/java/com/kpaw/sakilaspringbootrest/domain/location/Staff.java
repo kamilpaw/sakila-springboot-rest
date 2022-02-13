@@ -11,6 +11,7 @@ public class Staff {
 
     @Id
     @Column(name = "staff_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte staffId;
 
     @Column(name = "first_name")
@@ -21,7 +22,7 @@ public class Staff {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address addresId;
+    private Address addres;
 
     @Column(name = "picture")
     private Byte[] picture;
@@ -31,7 +32,7 @@ public class Staff {
 
     @ManyToOne
     @JoinColumn(name = "store_id")
-    private Store storeId;
+    private Store store;
 
     @Column(name = "active")
     private Boolean active;
@@ -52,19 +53,34 @@ public class Staff {
 
     }
 
-    public Staff(Byte staffId, String firstName, String lastName, Address addresId, Byte[] picture, String email, Store storeId, Boolean active, String username, String password, Date lastUpdate) {
+    public Staff(Byte staffId, String firstName, String lastName, Address addres, Byte[] picture, String email, Store store, Boolean active, String username, String password) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addresId = addresId;
+        this.addres = addres;
         this.picture = picture;
         this.email = email;
-        this.storeId = storeId;
+        this.store = store;
+        this.active = active;
+        this.username = username;
+        this.password = password;
+    }
+
+
+    public Staff(Byte staffId, String firstName, String lastName, Address addres, Byte[] picture, String email, Store store, Boolean active, String username, String password, Date lastUpdate) {
+        this.staffId = staffId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.addres = addres;
+        this.picture = picture;
+        this.email = email;
+        this.store = store;
         this.active = active;
         this.username = username;
         this.password = password;
         this.lastUpdate = lastUpdate;
     }
+
 
     public Byte getStaffId() {
         return staffId;
@@ -90,12 +106,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Address getAddresId() {
-        return addresId;
+    public Address getAddres() {
+        return addres;
     }
 
-    public void setAddresId(Address addresId) {
-        this.addresId = addresId;
+    public void setAddres(Address addresId) {
+        this.addres = addresId;
     }
 
     public Byte[] getPicture() {
@@ -114,12 +130,12 @@ public class Staff {
         this.email = email;
     }
 
-    public Store getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
+    public void setStore(Store storeId) {
+        this.store = storeId;
     }
 
     public Boolean getActive() {
@@ -159,7 +175,7 @@ public class Staff {
         return "Staff{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addresId=" + addresId +
+                ", addresId=" + addres +
                 ", email='" + email + '\'' +
                 '}';
     }

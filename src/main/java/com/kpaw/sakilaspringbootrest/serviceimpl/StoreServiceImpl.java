@@ -2,7 +2,7 @@ package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Store;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
-import com.kpaw.sakilaspringbootrest.repository.StoreRepository;
+import com.kpaw.sakilaspringbootrest.repository.rent.StoreRepository;
 import com.kpaw.sakilaspringbootrest.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -28,11 +28,11 @@ public class Film {
 
     @ManyToOne
     @JoinColumn(name = "language_id")
-    private Language languageId;
+    private Language language;
 
     @ManyToOne
     @JoinColumn(name = "original_language_id")
-    private Language originalLanguageId;
+    private Language originalLanguage;
 
     @Column(name = "rental_duration")
     private Byte rentalDuration;
@@ -72,13 +72,31 @@ public class Film {
     public Film() {
     }
 
-    public Film(Integer filmId, String title, String description, Integer releaseYear, Language languageId, Language originalLanguageId, Byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate) {
+
+    public Film(Integer filmId, String title, String description, Integer releaseYear, Language language, Language originalLanguage, Byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, List<Actor> actors, List<Category> categories) {
         this.filmId = filmId;
         this.title = title;
         this.description = description;
         this.releaseYear = releaseYear;
-        this.languageId = languageId;
-        this.originalLanguageId = originalLanguageId;
+        this.language = language;
+        this.originalLanguage = originalLanguage;
+        this.rentalDuration = rentalDuration;
+        this.rentalRate = rentalRate;
+        this.length = length;
+        this.replacementCost = replacementCost;
+        this.rating = rating;
+        this.specialFeatures = specialFeatures;
+        this.actors = actors;
+        this.categories = categories;
+    }
+
+    public Film(Integer filmId, String title, String description, Integer releaseYear, Language language, Language originalLanguage, Byte rentalDuration, BigDecimal rentalRate, Short length, BigDecimal replacementCost, String rating, String specialFeatures, Date lastUpdate, List<Actor> actors, List<Category> categories) {
+        this.filmId = filmId;
+        this.title = title;
+        this.description = description;
+        this.releaseYear = releaseYear;
+        this.language = language;
+        this.originalLanguage = originalLanguage;
         this.rentalDuration = rentalDuration;
         this.rentalRate = rentalRate;
         this.length = length;
@@ -86,6 +104,8 @@ public class Film {
         this.rating = rating;
         this.specialFeatures = specialFeatures;
         this.lastUpdate = lastUpdate;
+        this.actors = actors;
+        this.categories = categories;
     }
 
     public List<Actor> getActors() {
@@ -144,20 +164,20 @@ public class Film {
         this.releaseYear = releaseYear;
     }
 
-    public Language getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
+    public void setLanguage(Language languageId) {
+        this.language = languageId;
     }
 
-    public Language getOriginalLanguageId() {
-        return originalLanguageId;
+    public Language getOriginalLanguage() {
+        return originalLanguage;
     }
 
-    public void setOriginalLanguageId(Language originalLanguageId) {
-        this.originalLanguageId = originalLanguageId;
+    public void setOriginalLanguage(Language originalLanguageId) {
+        this.originalLanguage = originalLanguageId;
     }
 
     public Byte getRentalDuration() {

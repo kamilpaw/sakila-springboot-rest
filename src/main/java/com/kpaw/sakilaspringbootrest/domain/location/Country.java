@@ -24,6 +24,11 @@ public class Country {
     public Country(){
     }
 
+    public Country(Short country_id, String country) {
+        this.country_id = country_id;
+        this.country = country;
+    }
+
     public Country(Short country_id, String country, Date lastUpdate) {
         this.country_id = country_id;
         this.country = country;

@@ -28,8 +28,8 @@ public class DTOMapper {
 
     public StaffDTO toStaffDTO(Staff staff) {
 
-        return new StaffDTO(staff.getStaffId(), staff.getFirstName(), staff.getLastName(), staff.getAddresId(), staff.getPicture(),
-                staff.getEmail(), staff.getStoreId().getStoreId(), staff.getActive(), staff.getUsername(), staff.getPassword(),
+        return new StaffDTO(staff.getStaffId(), staff.getFirstName(), staff.getLastName(), staff.getAddres(), staff.getPicture(),
+                staff.getEmail(), staff.getStore().getStoreId(), staff.getActive(), staff.getUsername(), staff.getPassword(),
                 staff.getLastUpdate());
     }
 
@@ -40,21 +40,21 @@ public class DTOMapper {
     }
 
     public CustomerDTO toCustomerDTO(Customer customer) {
-        return new CustomerDTO(customer.getCustomerId(), customer.getStoreId().getStoreId(),
+        return new CustomerDTO(customer.getCustomerId(), customer.getStore().getStoreId(),
                 customer.getFirstName(), customer.getLastName(), customer.getEmail(),
-                customer.getAddressId(), customer.getActive(), customer.getCreateDate(),
+                customer.getAddress(), customer.getActive(), customer.getCreateDate(),
                 customer.getLastUpdate());
     }
 
     public Customer toCustomer(CustomerDTO customerDTO) {
         return new Customer(customerDTO.getCustomerId(), storeService.finById(customerDTO.getStoreId()),
                 customerDTO.getFirstName(), customerDTO.getLastName(), customerDTO.getEmail(),
-                customerDTO.getAddressId(), customerDTO.getActive(), customerDTO.getCreateDate(),
+                customerDTO.getAddress(), customerDTO.getActive(), customerDTO.getCreateDate(),
                 customerDTO.getLastUpdate());
     }
 
     public InventoryDTO toInventoryDto(Inventory inventory) {
-        return new InventoryDTO(inventory.getInventoryId(), inventory.getFilmId().getFilmId(), inventory.getStoreId().getStoreId(), inventory.getLastUpdate());
+        return new InventoryDTO(inventory.getInventoryId(), inventory.getFilm().getFilmId(), inventory.getStore().getStoreId(), inventory.getLastUpdate());
     }
 
     public Inventory toInventory(InventoryDTO inventoryDTO) {

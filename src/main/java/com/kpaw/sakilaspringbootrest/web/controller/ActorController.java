@@ -62,6 +62,6 @@ public class ActorController {
     public ActorPagedList searchActorsByFirstNameAndLastName(@RequestParam(required = false) Integer pageNumber,
                                                              @RequestParam(required = false) Integer pageSize,
                                                              @RequestParam(defaultValue = "") String name){
-        return actorService.findActorsByFirstNameAndLastName(name, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
+        return actorService.findActorsByFirstNameOrLastName(name, PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
 }

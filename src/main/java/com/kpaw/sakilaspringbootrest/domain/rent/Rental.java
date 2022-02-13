@@ -14,6 +14,7 @@ public class Rental {
 
     @Id
     @Column(name = "rental_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentalId;
 
 
@@ -22,18 +23,18 @@ public class Rental {
 
     @ManyToOne
     @JoinColumn(name = "inventory_id")
-    private Inventory inventoryId;
+    private Inventory inventory;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customerId;
+    private Customer customer;
 
     @Column(name = "return_date")
     private Timestamp returnDate;
 
     @ManyToOne
     @JoinColumn(name = "staff_id")
-    private Staff staffId;
+    private Staff staff;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,13 +45,22 @@ public class Rental {
 
     }
 
-    public Rental(Integer rentalId, Timestamp rentalDate, Inventory inventoryId, Customer customerId, Timestamp returnDate, Staff staffId, Date lastUpdate) {
+    public Rental(Integer rentalId, Timestamp rentalDate, Inventory inventory, Customer customer, Timestamp returnDate, Staff staff) {
         this.rentalId = rentalId;
         this.rentalDate = rentalDate;
-        this.inventoryId = inventoryId;
-        this.customerId = customerId;
+        this.inventory = inventory;
+        this.customer = customer;
         this.returnDate = returnDate;
-        this.staffId = staffId;
+        this.staff = staff;
+    }
+
+    public Rental(Integer rentalId, Timestamp rentalDate, Inventory inventory, Customer customer, Timestamp returnDate, Staff staff, Date lastUpdate) {
+        this.rentalId = rentalId;
+        this.rentalDate = rentalDate;
+        this.inventory = inventory;
+        this.customer = customer;
+        this.returnDate = returnDate;
+        this.staff = staff;
         this.lastUpdate = lastUpdate;
     }
 
@@ -70,20 +80,20 @@ public class Rental {
         this.rentalDate = rentalDate;
     }
 
-    public Inventory getInventoryId() {
-        return inventoryId;
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public void setInventoryId(Inventory inventoryId) {
-        this.inventoryId = inventoryId;
+    public void setInventory(Inventory inventoryId) {
+        this.inventory = inventoryId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customerId) {
+        this.customer = customerId;
     }
 
     public Timestamp getReturnDate() {
@@ -94,12 +104,12 @@ public class Rental {
         this.returnDate = returnDate;
     }
 
-    public Staff getStaffId() {
-        return staffId;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setStaffId(Staff staffId) {
-        this.staffId = staffId;
+    public void setStaff(Staff staffId) {
+        this.staff = staffId;
     }
 
     public Date getLastUpdate() {

@@ -14,11 +14,12 @@ public class Customer {
 
     @Id
     @Column(name = "customer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short customerId;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
-    private Store storeId;
+    private Store store;
 
     @Column(name = "first_name")
     private String firstName;
@@ -31,7 +32,7 @@ public class Customer {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address addressId;
+    private Address address;
 
     @Column(name = "active")
     private Boolean active;
@@ -48,13 +49,23 @@ public class Customer {
 
     }
 
-    public Customer(Short customerId, Store storeId, String firstName, String lastName, String email, Address addressId, Boolean active, Timestamp createDate, Date lastUpdate) {
+    public Customer(Short customerId, Store store, String firstName, String lastName, String email, Address address, Boolean active) {
         this.customerId = customerId;
-        this.storeId = storeId;
+        this.store = store;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.addressId = addressId;
+        this.address = address;
+        this.active = active;
+    }
+
+    public Customer(Short customerId, Store store, String firstName, String lastName, String email, Address address, Boolean active, Timestamp createDate, Date lastUpdate) {
+        this.customerId = customerId;
+        this.store = store;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
         this.active = active;
         this.createDate = createDate;
         this.lastUpdate = lastUpdate;
@@ -68,12 +79,12 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public Store getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
+    public void setStore(Store storeId) {
+        this.store = storeId;
     }
 
     public String getFirstName() {
@@ -100,12 +111,12 @@ public class Customer {
         this.email = email;
     }
 
-    public Address getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address addressId) {
+        this.address = addressId;
     }
 
     public Boolean getActive() {

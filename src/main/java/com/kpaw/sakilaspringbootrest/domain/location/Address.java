@@ -11,6 +11,7 @@ public class Address {
 
     @Id
     @Column(name  = "address_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short addressId;
 
     @Column(name = "address")
@@ -33,7 +34,7 @@ public class Address {
     private String phone;
 
     @Column(name = "location")
-    private String location;
+    private Byte[] location;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,7 +45,28 @@ public class Address {
 
     }
 
-    public Address(Short addressId, String address, String address2, String district, City city, String postalCode, String phone, String location, Date lastUpdate) {
+    public Address(String address, String address2, String district, City city, String postalCode, String phone, Byte[] location) {
+        this.address = address;
+        this.address2 = address2;
+        this.district = district;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.phone = phone;
+        this.location = location;
+    }
+
+    public Address(Short addressId, String address, String address2, String district, City city, String postalCode, String phone, Byte[] location) {
+        this.addressId = addressId;
+        this.address = address;
+        this.address2 = address2;
+        this.district = district;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.phone = phone;
+        this.location = location;
+    }
+
+    public Address(Short addressId, String address, String address2, String district, City city, String postalCode, String phone, Byte[] location, Date lastUpdate) {
         this.addressId = addressId;
         this.address = address;
         this.address2 = address2;
@@ -112,11 +134,11 @@ public class Address {
         this.phone = phone;
     }
 
-    public String getLocation() {
+    public Byte[] getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Byte[] location) {
         this.location = location;
     }
 
@@ -133,9 +155,7 @@ public class Address {
         return "Address{" +
                 "addressId=" + addressId +
                 ", address='" + address + '\'' +
-                ", district='" + district + '\'' +
                 ", city=" + city +
-                ", phone='" + phone + '\'' +
                 '}';
     }
 }

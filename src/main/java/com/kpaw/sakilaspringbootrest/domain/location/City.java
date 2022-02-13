@@ -11,6 +11,7 @@ public class City {
 
     @Id
     @Column(name = "city_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short cityId;
 
     @Column(name = "city")
@@ -26,6 +27,19 @@ public class City {
     private Date lastUpdate;
 
     public City(){
+    }
+
+    public City(Short cityId, String city, Country country) {
+        this.cityId = cityId;
+        this.city = city;
+        this.country = country;
+    }
+
+    public City(Short cityId, String city, Country country, Date lastUpdate) {
+        this.cityId = cityId;
+        this.city = city;
+        this.country = country;
+        this.lastUpdate = lastUpdate;
     }
 
     public Short getCityId() {

@@ -14,19 +14,20 @@ public class Payment {
 
     @Id
     @Column(name = "payment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short paymentId;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customerId;
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "staff_id")
-    private Staff staffId;
+    private Staff staff;
 
     @ManyToOne
     @JoinColumn(name = "rental_id")
-    private Rental rentalId;
+    private Rental rental;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -40,14 +41,22 @@ public class Payment {
     private Date lastUpdate;
 
     public Payment(){
-
     }
 
-    public Payment(Short paymentId, Customer customerId, Staff staffId, Rental rentalId, BigDecimal amount, Timestamp paymentDate, Date lastUpdate) {
+    public Payment(Short paymentId, Customer customer, Staff staff, Rental rental, BigDecimal amount, Timestamp paymentDate) {
         this.paymentId = paymentId;
-        this.customerId = customerId;
-        this.staffId = staffId;
-        this.rentalId = rentalId;
+        this.customer = customer;
+        this.staff = staff;
+        this.rental = rental;
+        this.amount = amount;
+        this.paymentDate = paymentDate;
+    }
+
+    public Payment(Short paymentId, Customer customer, Staff staff, Rental rental, BigDecimal amount, Timestamp paymentDate, Date lastUpdate) {
+        this.paymentId = paymentId;
+        this.customer = customer;
+        this.staff = staff;
+        this.rental = rental;
         this.amount = amount;
         this.paymentDate = paymentDate;
         this.lastUpdate = lastUpdate;
@@ -61,28 +70,28 @@ public class Payment {
         this.paymentId = paymentId;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customerId) {
+        this.customer = customerId;
     }
 
-    public Staff getStaffId() {
-        return staffId;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setStaffId(Staff staffId) {
-        this.staffId = staffId;
+    public void setStaff(Staff staffId) {
+        this.staff = staffId;
     }
 
-    public Rental getRentalId() {
-        return rentalId;
+    public Rental getRental() {
+        return rental;
     }
 
-    public void setRentalId(Rental rentalId) {
-        this.rentalId = rentalId;
+    public void setRental(Rental rentalId) {
+        this.rental = rentalId;
     }
 
     public BigDecimal getAmount() {

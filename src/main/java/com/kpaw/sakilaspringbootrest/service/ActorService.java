@@ -16,5 +16,5 @@ public interface ActorService {
 
     ActorPagedList findActorsByFilmId(int id, PageRequest pageRequest);
 
-    ActorPagedList findActorsByFirstNameAndLastName(String name, PageRequest pageRequest);
+    ActorPagedList findActorsByFirstNameOrLastName(String name, PageRequest pageRequest);
 }

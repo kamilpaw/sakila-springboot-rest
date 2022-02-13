@@ -1,9 +1,6 @@
 package com.kpaw.sakilaspringbootrest.domain.movie;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "language")
@@ -11,6 +8,7 @@ public class Language {
 
     @Id
     @Column(name = "language_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte languageId;
 
     @Column(name = "name")

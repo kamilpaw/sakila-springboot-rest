@@ -11,15 +11,16 @@ public class Store {
 
     @Id
     @Column(name = "store_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte storeId;
 
     @ManyToOne
     @JoinColumn(name = "manager_staff_id")
-    private Staff managerStaffId;
+    private Staff managerStaff;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address addressId;
+    private Address address;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,10 +31,16 @@ public class Store {
 
     }
 
-    public Store(Byte storeId, Staff managerStaffId, Address addressId, Date lastUpdate) {
+    public Store(Byte storeId, Staff managerStaff, Address address) {
         this.storeId = storeId;
-        this.managerStaffId = managerStaffId;
-        this.addressId = addressId;
+        this.managerStaff = managerStaff;
+        this.address = address;
+    }
+
+    public Store(Byte storeId, Staff managerStaff, Address address, Date lastUpdate) {
+        this.storeId = storeId;
+        this.managerStaff = managerStaff;
+        this.address = address;
         this.lastUpdate = lastUpdate;
     }
 
@@ -45,20 +52,20 @@ public class Store {
         this.storeId = storeId;
     }
 
-    public Staff getManagerStaffId() {
-        return managerStaffId;
+    public Staff getManagerStaff() {
+        return managerStaff;
     }
 
-    public void setManagerStaffId(Staff managerStaffId) {
-        this.managerStaffId = managerStaffId;
+    public void setManagerStaff(Staff managerStaffId) {
+        this.managerStaff = managerStaffId;
     }
 
-    public Address getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Address addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address addressId) {
+        this.address = addressId;
     }
 
     public Date getLastUpdate() {
@@ -73,8 +80,8 @@ public class Store {
     public String toString() {
         return "Store{" +
                 "storeId=" + storeId +
-                ", managerStaffId=" + managerStaffId +
-                ", addressId=" + addressId +
+                ", managerStaffId=" + managerStaff +
+                ", addressId=" + address +
                 ", lastUpdate=" + lastUpdate +
                 '}';
     }

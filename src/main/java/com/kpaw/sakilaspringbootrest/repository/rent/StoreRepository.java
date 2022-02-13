@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.repository;
+package com.kpaw.sakilaspringbootrest.repository.rent;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Store;
 import org.springframework.data.jpa.repository.JpaRepository;

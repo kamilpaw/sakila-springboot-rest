@@ -58,7 +58,7 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public ActorPagedList findActorsByFirstNameAndLastName(String name, PageRequest pageRequest) {
+    public ActorPagedList findActorsByFirstNameOrLastName(String name, PageRequest pageRequest) {
         Page<Actor> actorPage = actorRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(name, name, pageRequest);
         return new ActorPagedList(actorPage.getContent(),
                 PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),

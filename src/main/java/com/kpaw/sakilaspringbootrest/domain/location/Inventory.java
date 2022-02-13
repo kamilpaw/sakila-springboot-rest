@@ -1,7 +1,6 @@
 package com.kpaw.sakilaspringbootrest.domain.location;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -13,15 +12,16 @@ public class Inventory {
 
     @Id
     @Column(name = "inventory_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer inventoryId;
 
     @ManyToOne
     @JoinColumn(name = "film_id")
-    private Film filmId;
+    private Film film;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
-    private Store storeId;
+    private Store store;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -32,10 +32,16 @@ public class Inventory {
 
     }
 
-    public Inventory(Integer inventoryId, Film filmId, Store storeId, Date lastUpdate) {
+    public Inventory(Integer inventoryId, Film film, Store store) {
         this.inventoryId = inventoryId;
-        this.filmId = filmId;
-        this.storeId = storeId;
+        this.film = film;
+        this.store = store;
+    }
+
+    public Inventory(Integer inventoryId, Film film, Store store, Date lastUpdate) {
+        this.inventoryId = inventoryId;
+        this.film = film;
+        this.store = store;
         this.lastUpdate = lastUpdate;
     }
 
@@ -47,20 +53,20 @@ public class Inventory {
         this.inventoryId = inventoryId;
     }
 
-    public Film getFilmId() {
-        return filmId;
+    public Film getFilm() {
+        return film;
     }
 
-    public void setFilmId(Film filmId) {
-        this.filmId = filmId;
+    public void setFilm(Film filmId) {
+        this.film = filmId;
     }
 
-    public Store getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
+    public void setStore(Store storeId) {
+        this.store = storeId;
     }
 
     public Date getLastUpdate() {
@@ -75,8 +81,8 @@ public class Inventory {
     public String toString() {
         return "Inventory{" +
                 "inventoryId=" + inventoryId +
-                ", filmId=" + filmId +
-                ", storeId=" + storeId +
+                ", filmId=" + film +
+                ", storeId=" + store +
                 '}';
     }
 }
