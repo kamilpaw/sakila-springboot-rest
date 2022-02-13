@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.web.model;
+package com.kpaw.sakilaspringbootrest.web.model.dtos;
 
 import java.util.Date;
 

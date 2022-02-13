@@ -3,27 +3,30 @@ package com.kpaw.sakilaspringbootrest.web.mapper;
 import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
 import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
-import com.kpaw.sakilaspringbootrest.service.ActorService;
-import com.kpaw.sakilaspringbootrest.service.FilmService;
-import com.kpaw.sakilaspringbootrest.service.StoreService;
-import com.kpaw.sakilaspringbootrest.web.model.CustomerDTO;
-import com.kpaw.sakilaspringbootrest.web.model.InventoryDTO;
-import com.kpaw.sakilaspringbootrest.web.model.StaffDTO;
+import com.kpaw.sakilaspringbootrest.domain.rent.Payment;
+import com.kpaw.sakilaspringbootrest.domain.rent.Rental;
+import com.kpaw.sakilaspringbootrest.service.*;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DTOMapper {
 
-    StoreService storeService;
-    FilmService filmService;
-    ActorService actorService;
+    private StoreService storeService;
+    private FilmService filmService;
+    private ActorService actorService;
+    private InventoryService inventoryService;
+    private StaffService staffService;
 
     @Autowired
-    DTOMapper(StoreService storeService, FilmService filmService, ActorService actorService) {
+    DTOMapper(StoreService storeService, FilmService filmService, ActorService actorService, InventoryService inventoryService,
+              StaffService staffService) {
         this.storeService = storeService;
         this.filmService = filmService;
         this.actorService = actorService;
+        this.inventoryService = inventoryService;
+        this.staffService = staffService;
     }
 
     public StaffDTO toStaffDTO(Staff staff) {
@@ -60,6 +63,46 @@ public class DTOMapper {
     public Inventory toInventory(InventoryDTO inventoryDTO) {
         return new Inventory(inventoryDTO.getInventoryId(), filmService.findByID(inventoryDTO.getFilmId()), storeService.finById(inventoryDTO.getStoreId()),
                 inventoryDTO.getLastUpdate());
+    }
+
+    public RentalDTO toRentalDto(Rental rental) {
+        return new RentalDTO(rental.getRentalId(),
+                rental.getRentalDate(),
+                rental.getInventory().getInventoryId(),
+                this.toCustomerDTO(rental.getCustomer()),
+                rental.getReturnDate(),
+                rental.getStaff().getStaffId(),
+                rental.getLastUpdate());
+    }
+
+    public Rental toRental(RentalDTO rentalDTO) {
+        return new Rental(rentalDTO.getRentalId(),
+                rentalDTO.getRentalDate(),
+                inventoryService.findById(rentalDTO.getInventoryId()),
+                this.toCustomer(rentalDTO.getCustomerDTO()),
+                rentalDTO.getReturnDate(),
+                staffService.findById(rentalDTO.getStaffId()),
+                rentalDTO.getLastUpdate());
+    }
+
+    public PaymentDTO toPaymentDto(Payment payment) {
+        return new PaymentDTO(payment.getPaymentId(),
+                this.toCustomerDTO(payment.getCustomer()),
+                payment.getStaff().getStaffId(),
+                this.toRentalDto(payment.getRental()),
+                payment.getAmount(),
+                payment.getPaymentDate(),
+                payment.getLastUpdate());
+    }
+
+    public Payment toPayment(PaymentDTO paymentDTO){
+        return new Payment(paymentDTO.getPaymentId(),
+                this.toCustomer(paymentDTO.getCustomerDTO()),
+                staffService.findById(paymentDTO.getStaffId()),
+                this.toRental(paymentDTO.getRentalDTO()),
+                paymentDTO.getAmount(),
+                paymentDTO.getPaymentDate(),
+                paymentDTO.getLastUpdate());
     }
 
 }

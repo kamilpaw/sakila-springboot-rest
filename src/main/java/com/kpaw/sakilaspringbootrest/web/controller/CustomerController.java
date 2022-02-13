@@ -4,13 +4,13 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 import com.kpaw.sakilaspringbootrest.domain.location.Address;
 import com.kpaw.sakilaspringbootrest.service.AddressService;
 import com.kpaw.sakilaspringbootrest.service.CustomerService;
-import com.kpaw.sakilaspringbootrest.web.model.CustomerDTO;
-import com.kpaw.sakilaspringbootrest.web.model.CustomerPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.CustomerDTO;
+import com.kpaw.sakilaspringbootrest.web.model.pages.CustomerPagedList;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageNumber;
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageSize;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageNumber;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageSize;
 
 @RestController
 public class CustomerController {

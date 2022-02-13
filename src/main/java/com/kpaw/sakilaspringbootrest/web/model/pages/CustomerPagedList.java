@@ -1,6 +1,6 @@
-package com.kpaw.sakilaspringbootrest.web.model;
+package com.kpaw.sakilaspringbootrest.web.model.pages;
 
-import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.CustomerDTO;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 

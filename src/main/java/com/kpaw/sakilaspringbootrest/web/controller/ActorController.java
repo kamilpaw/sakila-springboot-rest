@@ -3,12 +3,12 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
-import com.kpaw.sakilaspringbootrest.web.model.ActorPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageNumber;
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageSize;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageNumber;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageSize;
 
 @RestController
 public class ActorController {

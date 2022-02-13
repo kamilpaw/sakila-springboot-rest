@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.web.model;
+package com.kpaw.sakilaspringbootrest.web.model.pages;
 
 public class PageSizeAndNumber {
 

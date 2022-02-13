@@ -2,12 +2,12 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
-import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.pages.FilmPagedList;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageNumber;
-import static com.kpaw.sakilaspringbootrest.web.model.PageSizeAndNumber.pageSize;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageNumber;
+import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pageSize;
 
 
 @RestController

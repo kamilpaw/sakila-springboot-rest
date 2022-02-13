@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.web.model;
+package com.kpaw.sakilaspringbootrest.web.model.pages;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import org.springframework.data.domain.PageImpl;

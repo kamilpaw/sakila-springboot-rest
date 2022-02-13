@@ -1,7 +1,7 @@
 package com.kpaw.sakilaspringbootrest.service;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
-import com.kpaw.sakilaspringbootrest.web.model.FilmPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.pages.FilmPagedList;
 import org.springframework.data.domain.PageRequest;
 
 public interface FilmService {

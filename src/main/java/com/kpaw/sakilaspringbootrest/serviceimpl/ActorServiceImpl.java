@@ -4,7 +4,7 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
-import com.kpaw.sakilaspringbootrest.web.model.ActorPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,7 +1,7 @@
 package com.kpaw.sakilaspringbootrest.service;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
-import com.kpaw.sakilaspringbootrest.web.model.ActorPagedList;
+import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
 import org.springframework.data.domain.PageRequest;
 
 public interface ActorService {

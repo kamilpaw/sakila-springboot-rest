@@ -4,7 +4,7 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
 import com.kpaw.sakilaspringbootrest.service.StaffService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
-import com.kpaw.sakilaspringbootrest.web.model.StaffDTO;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.StaffDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

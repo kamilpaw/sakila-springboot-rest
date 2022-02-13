@@ -4,7 +4,7 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
 import com.kpaw.sakilaspringbootrest.service.InventoryService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
-import com.kpaw.sakilaspringbootrest.web.model.InventoryDTO;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.InventoryDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

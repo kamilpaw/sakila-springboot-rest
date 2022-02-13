@@ -17,7 +17,6 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentalId;
 
-
     @Column(name = "rental_date")
     private Timestamp rentalDate;
 
