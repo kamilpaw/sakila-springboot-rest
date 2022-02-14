@@ -4,6 +4,7 @@ import com.kpaw.sakilaspringbootrest.domain.location.Staff;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.location.StaffRepository;
 import com.kpaw.sakilaspringbootrest.service.StaffService;
+import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff findById(byte id) {
+    public Staff findById(Byte id) {
         Optional<Staff> result = staffRepository.findById(id);
         if(!result.isPresent()){
             throw new EntityNotFoundExc("Staff", id);
@@ -40,7 +41,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public void deleteById(byte id) {
+    public void deleteById(Byte id) {
         staffRepository.deleteById(id);
     }
 }

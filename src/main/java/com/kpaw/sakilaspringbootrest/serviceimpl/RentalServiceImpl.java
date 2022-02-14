@@ -1,10 +1,9 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 
-import ch.qos.logback.core.rolling.helper.RenameUtil;
 import com.kpaw.sakilaspringbootrest.domain.rent.Rental;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
-import com.kpaw.sakilaspringbootrest.repository.rent.RentalRepository;
+import com.kpaw.sakilaspringbootrest.repository.rental.RentalRepository;
 import com.kpaw.sakilaspringbootrest.service.RentalService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import com.kpaw.sakilaspringbootrest.web.model.dtos.RentalDTO;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

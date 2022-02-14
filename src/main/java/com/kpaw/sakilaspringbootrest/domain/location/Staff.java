@@ -11,7 +11,6 @@ public class Staff {
 
     @Id
     @Column(name = "staff_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte staffId;
 
     @Column(name = "first_name")

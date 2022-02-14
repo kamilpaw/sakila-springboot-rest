@@ -1,4 +1,4 @@
-package com.kpaw.sakilaspringbootrest.repository.rent;
+package com.kpaw.sakilaspringbootrest.repository.rental;
 
 import com.kpaw.sakilaspringbootrest.domain.rent.Rental;
 import org.springframework.data.domain.Page;

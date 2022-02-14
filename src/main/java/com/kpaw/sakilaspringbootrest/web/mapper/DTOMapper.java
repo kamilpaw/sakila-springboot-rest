@@ -2,6 +2,7 @@ package com.kpaw.sakilaspringbootrest.web.mapper;
 
 import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
 import com.kpaw.sakilaspringbootrest.domain.location.Staff;
+import com.kpaw.sakilaspringbootrest.domain.location.Store;
 import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
 import com.kpaw.sakilaspringbootrest.domain.rent.Payment;
 import com.kpaw.sakilaspringbootrest.domain.rent.Rental;
@@ -15,16 +16,14 @@ public class DTOMapper {
 
     private StoreService storeService;
     private FilmService filmService;
-    private ActorService actorService;
     private InventoryService inventoryService;
     private StaffService staffService;
 
     @Autowired
-    DTOMapper(StoreService storeService, FilmService filmService, ActorService actorService, InventoryService inventoryService,
+    DTOMapper(StoreService storeService, FilmService filmService, InventoryService inventoryService,
               StaffService staffService) {
         this.storeService = storeService;
         this.filmService = filmService;
-        this.actorService = actorService;
         this.inventoryService = inventoryService;
         this.staffService = staffService;
     }
@@ -95,7 +94,7 @@ public class DTOMapper {
                 payment.getLastUpdate());
     }
 
-    public Payment toPayment(PaymentDTO paymentDTO){
+    public Payment toPayment(PaymentDTO paymentDTO) {
         return new Payment(paymentDTO.getPaymentId(),
                 this.toCustomer(paymentDTO.getCustomerDTO()),
                 staffService.findById(paymentDTO.getStaffId()),
@@ -103,6 +102,18 @@ public class DTOMapper {
                 paymentDTO.getAmount(),
                 paymentDTO.getPaymentDate(),
                 paymentDTO.getLastUpdate());
+    }
+
+    public StoreDTO toStoreDTO(Store store){
+        return new StoreDTO(store.getStoreId(),store.getManagerStaff().getStaffId(),
+                store.getAddress(),store.getLastUpdate());
+    }
+
+    public Store toStore(StoreDTO storeDTO){
+        return new Store(storeDTO.getStoreId(),
+                staffService.findById(storeDTO.getManagerId()),
+                storeDTO.getAddress(),
+                storeDTO.getLastUpdate());
     }
 
 }

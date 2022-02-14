@@ -8,7 +8,6 @@ public class Language {
 
     @Id
     @Column(name = "language_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte languageId;
 
     @Column(name = "name")

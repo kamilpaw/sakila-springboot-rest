@@ -9,7 +9,6 @@ public class Category {
 
     @Id
     @Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte category_id;
 
     @Column(name = "name")

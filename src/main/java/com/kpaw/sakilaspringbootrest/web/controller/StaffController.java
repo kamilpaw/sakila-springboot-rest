@@ -27,27 +27,25 @@ public class StaffController {
     }
 
     @GetMapping("/staff/{staffId}")
-    public StaffDTO findById(@PathVariable byte staffId){
+    public StaffDTO findById(@PathVariable Byte staffId){
         return mapper.toStaffDTO(staffService.findById(staffId));
     }
 
     @PostMapping("/staff")
-    public String saveNewStaff(@RequestBody StaffDTO staffDTO){
+    public StaffDTO saveNewStaff(@RequestBody StaffDTO staffDTO){
         staffDTO.setStaffId((byte) 0);
-        Staff staff = mapper.toStaff(staffDTO);
-        staffService.save(staff);
-        return "Saved new memmber of staff: " + staff.toString();
+        staffService.save(mapper.toStaff(staffDTO));
+        return staffDTO;
     }
 
     @PutMapping("/staff")
-    public String updateStaff(@RequestBody StaffDTO staffDTO){
-        Staff staff = mapper.toStaff(staffDTO);
-        staffService.save(staff);
-        return "Updated memeber of staff: " + staff.toString();
+    public StaffDTO updateStaff(@RequestBody StaffDTO staffDTO){
+        staffService.save(mapper.toStaff(staffDTO));
+        return staffDTO;
     }
 
     @DeleteMapping("/staff/{staffId}")
-    public String deleteStaff(@PathVariable byte staffId){
+    public String deleteStaff(@PathVariable Byte staffId){
         staffService.deleteById(staffId);
         return "Staff member with id " + staffId + " deleted";
     }

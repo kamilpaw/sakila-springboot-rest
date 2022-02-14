@@ -2,12 +2,11 @@ package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.rent.Payment;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
-import com.kpaw.sakilaspringbootrest.repository.rent.PaymentRepository;
+import com.kpaw.sakilaspringbootrest.repository.rental.PaymentRepository;
 import com.kpaw.sakilaspringbootrest.service.PaymentService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import com.kpaw.sakilaspringbootrest.web.model.dtos.PaymentDTO;
 import com.kpaw.sakilaspringbootrest.web.model.pages.PaymentPagedList;
-import org.apache.catalina.mapper.Mapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

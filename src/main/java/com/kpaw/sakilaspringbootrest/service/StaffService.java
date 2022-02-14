@@ -8,9 +8,9 @@ public interface StaffService {
 
     List<Staff> findAll();
 
-    Staff findById(byte id);
+    Staff findById(Byte id);
 
     void save(Staff staff);
 
-    void deleteById(byte id);
+    void deleteById(Byte id);
 }

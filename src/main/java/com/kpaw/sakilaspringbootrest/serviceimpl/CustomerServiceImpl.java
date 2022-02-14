@@ -2,7 +2,7 @@ package com.kpaw.sakilaspringbootrest.serviceimpl;
 
 import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
-import com.kpaw.sakilaspringbootrest.repository.rent.CustomerRepository;
+import com.kpaw.sakilaspringbootrest.repository.rental.CustomerRepository;
 import com.kpaw.sakilaspringbootrest.service.CustomerService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import com.kpaw.sakilaspringbootrest.web.model.dtos.CustomerDTO;
