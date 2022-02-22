@@ -1,6 +1,5 @@
 package com.kpaw.sakilaspringbootrest.service;
 
-import com.kpaw.sakilaspringbootrest.domain.rent.Payment;
 import com.kpaw.sakilaspringbootrest.web.model.dtos.PaymentDTO;
 import com.kpaw.sakilaspringbootrest.web.model.pages.PaymentPagedList;
 import org.springframework.data.domain.PageRequest;

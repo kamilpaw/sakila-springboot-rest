@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    private PaymentRepository paymentRepository;
-    private DTOMapper mapper;
+    private final PaymentRepository paymentRepository;
+    private final DTOMapper mapper;
 
     public PaymentServiceImpl(PaymentRepository paymentRepository, DTOMapper mapper){
         this.paymentRepository = paymentRepository;

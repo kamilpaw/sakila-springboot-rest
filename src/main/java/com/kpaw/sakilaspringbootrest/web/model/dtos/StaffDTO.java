@@ -13,7 +13,7 @@ public class StaffDTO {
 
     private String lastName;
 
-    private Address addresId;
+    private Address addressId;
 
     private Byte[] picture;
 
@@ -33,11 +33,11 @@ public class StaffDTO {
 
     }
 
-    public StaffDTO(Byte staffId, String firstName, String lastName, Address addresId, Byte[] picture, String email, Byte storeId, Boolean active, String username, String password, Date lastUpdate) {
+    public StaffDTO(Byte staffId, String firstName, String lastName, Address addressId, Byte[] picture, String email, Byte storeId, Boolean active, String username, String password, Date lastUpdate) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addresId = addresId;
+        this.addressId = addressId;
         this.picture = picture;
         this.email = email;
         this.storeId = storeId;
@@ -71,12 +71,12 @@ public class StaffDTO {
         this.lastName = lastName;
     }
 
-    public Address getAddresId() {
-        return addresId;
+    public Address getAddressId() {
+        return addressId;
     }
 
-    public void setAddresId(Address addresId) {
-        this.addresId = addresId;
+    public void setAddressId(Address addressId) {
+        this.addressId = addressId;
     }
 
     public Byte[] getPicture() {

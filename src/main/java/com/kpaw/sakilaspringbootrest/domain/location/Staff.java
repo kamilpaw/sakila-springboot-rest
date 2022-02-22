@@ -21,7 +21,7 @@ public class Staff {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    private Address addres;
+    private Address address;
 
     @Column(name = "picture")
     private Byte[] picture;
@@ -52,11 +52,11 @@ public class Staff {
 
     }
 
-    public Staff(Byte staffId, String firstName, String lastName, Address addres, Byte[] picture, String email, Store store, Boolean active, String username, String password) {
+    public Staff(Byte staffId, String firstName, String lastName, Address address, Byte[] picture, String email, Store store, Boolean active, String username, String password) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addres = addres;
+        this.address = address;
         this.picture = picture;
         this.email = email;
         this.store = store;
@@ -66,11 +66,11 @@ public class Staff {
     }
 
 
-    public Staff(Byte staffId, String firstName, String lastName, Address addres, Byte[] picture, String email, Store store, Boolean active, String username, String password, Date lastUpdate) {
+    public Staff(Byte staffId, String firstName, String lastName, Address address, Byte[] picture, String email, Store store, Boolean active, String username, String password, Date lastUpdate) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addres = addres;
+        this.address = address;
         this.picture = picture;
         this.email = email;
         this.store = store;
@@ -105,12 +105,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public Address getAddres() {
-        return addres;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddres(Address addresId) {
-        this.addres = addresId;
+    public void setAddress(Address addressId) {
+        this.address = addressId;
     }
 
     public Byte[] getPicture() {
@@ -174,7 +174,7 @@ public class Staff {
         return "Staff{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", addresId=" + addres +
+                ", addressId=" + address +
                 ", email='" + email + '\'' +
                 '}';
     }

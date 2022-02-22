@@ -24,7 +24,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store finById(byte id) {
         Optional<Store> result = storeRepository.findById(id);
-        if (!result.isPresent()) {
+        if (result.isEmpty()) {
             throw new EntityNotFoundExc("Store", id);
         }
         return result.get();

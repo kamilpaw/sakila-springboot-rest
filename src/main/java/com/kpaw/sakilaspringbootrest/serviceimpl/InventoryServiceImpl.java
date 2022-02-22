@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
-    private InventoryRepository inventoryRepository;
+    private final InventoryRepository inventoryRepository;
 
     @Autowired
     public InventoryServiceImpl(InventoryRepository inventoryRepository) {
@@ -28,7 +28,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public Inventory findById(int id) {
         Optional<Inventory> result = inventoryRepository.findById(id);
-        if (!result.isPresent()) {
+        if (result.isEmpty()) {
             throw new EntityNotFoundExc("Inventory", id);
         }
 

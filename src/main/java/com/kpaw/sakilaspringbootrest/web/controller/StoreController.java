@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 @RestController
 public class StoreController {
 
-    private StoreService storeService;
-    private DTOMapper mapper;
+    private final StoreService storeService;
+    private final DTOMapper mapper;
 
     public StoreController(StoreService storeService, DTOMapper mapper){
         this.storeService = storeService;

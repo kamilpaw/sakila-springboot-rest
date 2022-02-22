@@ -15,8 +15,8 @@ import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pa
 @RestController
 public class CustomerController {
 
-    private CustomerService customerService;
-    private AddressService addressService;
+    private final CustomerService customerService;
+    private final AddressService addressService;
 
     public CustomerController(CustomerService customerService, AddressService addressService) {
         this.customerService = customerService;

@@ -12,7 +12,7 @@ import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pa
 @RestController
 public class RentalController {
 
-    private RentalService rentalService;
+    private final RentalService rentalService;
 
     public RentalController(RentalService rentalService) {
         this.rentalService = rentalService;

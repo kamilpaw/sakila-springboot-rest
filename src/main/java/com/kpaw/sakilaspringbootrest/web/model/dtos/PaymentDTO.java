@@ -1,11 +1,5 @@
 package com.kpaw.sakilaspringbootrest.web.model.dtos;
 
-import com.kpaw.sakilaspringbootrest.domain.location.Staff;
-import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
-import com.kpaw.sakilaspringbootrest.domain.rent.Rental;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;

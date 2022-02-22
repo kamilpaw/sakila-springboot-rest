@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DTOMapper {
 
-    private StoreService storeService;
-    private FilmService filmService;
-    private InventoryService inventoryService;
-    private StaffService staffService;
+    private final StoreService storeService;
+    private final FilmService filmService;
+    private final InventoryService inventoryService;
+    private final StaffService staffService;
 
     @Autowired
     DTOMapper(StoreService storeService, FilmService filmService, InventoryService inventoryService,
@@ -30,13 +30,13 @@ public class DTOMapper {
 
     public StaffDTO toStaffDTO(Staff staff) {
 
-        return new StaffDTO(staff.getStaffId(), staff.getFirstName(), staff.getLastName(), staff.getAddres(), staff.getPicture(),
+        return new StaffDTO(staff.getStaffId(), staff.getFirstName(), staff.getLastName(), staff.getAddress(), staff.getPicture(),
                 staff.getEmail(), staff.getStore().getStoreId(), staff.getActive(), staff.getUsername(), staff.getPassword(),
                 staff.getLastUpdate());
     }
 
     public Staff toStaff(StaffDTO staffDTO) {
-        return new Staff(staffDTO.getStaffId(), staffDTO.getFirstName(), staffDTO.getLastName(), staffDTO.getAddresId(), staffDTO.getPicture(),
+        return new Staff(staffDTO.getStaffId(), staffDTO.getFirstName(), staffDTO.getLastName(), staffDTO.getAddressId(), staffDTO.getPicture(),
                 staffDTO.getEmail(), storeService.finById(staffDTO.getStoreId()), staffDTO.getActive(), staffDTO.getUsername(),
                 staffDTO.getPassword(), staffDTO.getLastUpdate());
     }

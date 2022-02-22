@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerRepository customerRepository;
-    private DTOMapper mapper;
+    private final CustomerRepository customerRepository;
+    private final DTOMapper mapper;
 
     public CustomerServiceImpl(CustomerRepository customerRepository, DTOMapper mapper) {
         this.customerRepository = customerRepository;
@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO findById(short id) {
         Optional<Customer> result = customerRepository.findById(id);
-        if (!result.isPresent()) {
+        if (result.isEmpty()) {
             throw new EntityNotFoundExc("Customer", id);
         }
         return mapper.toCustomerDTO(result.get());

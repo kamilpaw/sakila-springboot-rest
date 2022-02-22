@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @RestController
 public class InventoryController {
 
-    private InventoryService inventoryService;
-    private DTOMapper mapper;
+    private final InventoryService inventoryService;
+    private final DTOMapper mapper;
 
     public InventoryController(InventoryService inventoryService, DTOMapper mapper) {
         this.inventoryService = inventoryService;

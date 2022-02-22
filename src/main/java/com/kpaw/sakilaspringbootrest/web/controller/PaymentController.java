@@ -12,7 +12,7 @@ import static com.kpaw.sakilaspringbootrest.web.model.pages.PageSizeAndNumber.pa
 @RestController
 public class PaymentController {
 
-    private PaymentService paymentService;
+    private final PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;

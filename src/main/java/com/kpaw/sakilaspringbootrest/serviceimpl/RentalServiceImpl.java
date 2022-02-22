@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @Service
 public class RentalServiceImpl implements RentalService {
 
-    private RentalRepository rentalRepository;
-    private DTOMapper mapper;
+    private final RentalRepository rentalRepository;
+    private final DTOMapper mapper;
 
     public RentalServiceImpl(RentalRepository rentalRepository, DTOMapper mapper){
         this.rentalRepository = rentalRepository;
