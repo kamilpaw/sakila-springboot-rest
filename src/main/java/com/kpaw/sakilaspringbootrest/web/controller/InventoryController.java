@@ -5,6 +5,7 @@ import com.kpaw.sakilaspringbootrest.domain.location.Inventory;
 import com.kpaw.sakilaspringbootrest.service.InventoryService;
 import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
 import com.kpaw.sakilaspringbootrest.web.model.dtos.InventoryDTO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +32,14 @@ public class InventoryController {
         return mapper.toInventoryDto(inventoryService.findById(inventoryId));
     }
 
-    @PostMapping("/inventory")
-    public String saveNewInventory(@RequestBody InventoryDTO inventoryDTO) {
+    @PostMapping(value = "/inventory",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public InventoryDTO saveNewInventory(@RequestBody InventoryDTO inventoryDTO) {
         inventoryDTO.setInventoryId(0);
         Inventory inventory = mapper.toInventory(inventoryDTO);
         inventoryService.save(inventory);
-        return "Saved new inventory: " + inventory.toString();
+        return inventoryDTO;
     }
 
     @DeleteMapping("/inventory/{inventoryId}")

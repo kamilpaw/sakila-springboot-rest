@@ -55,4 +55,14 @@ public class InventoryDTO {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Override
+    public String toString() {
+        return "InventoryDTO{" +
+                "inventoryId=" + inventoryId +
+                ", filmId=" + filmId +
+                ", storeId=" + storeId +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
