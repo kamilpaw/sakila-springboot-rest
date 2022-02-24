@@ -24,7 +24,6 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.reset;
@@ -60,12 +59,12 @@ class InventoryControllerTest extends ControllerTest {
     List<InventoryDTO> inventoryDTOs;
 
     @BeforeEach
-    void setUp(){
-        date = Calendar.getInstance().getTime();;
+    void setUp() {
+        date = Calendar.getInstance().getTime();
         inventory1 = new Inventory(1, film, store, date);
         inventory2 = new Inventory(2, film, store, date);
-        inventoryDTO1 = new InventoryDTO(1,1, (byte) 1,date);
-        inventoryDTO2 = new InventoryDTO(2,2, (byte) 2,date);
+        inventoryDTO1 = new InventoryDTO(1, 1, (byte) 1, date);
+        inventoryDTO2 = new InventoryDTO(2, 2, (byte) 2, date);
         inventoryList = new ArrayList<>();
         inventoryList.add(inventory1);
         inventoryList.add(inventory2);
@@ -75,7 +74,7 @@ class InventoryControllerTest extends ControllerTest {
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         reset(inventoryService);
     }
 
@@ -88,15 +87,15 @@ class InventoryControllerTest extends ControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         String content = mvcResult.getResponse().getContentAsString();
-        InventoryDTO[] dtos = this.mapFromJson(content, InventoryDTO[].class);
-        assertTrue(dtos.length==2);
+        InventoryDTO[] inventoryDTOS = this.mapFromJson(content, InventoryDTO[].class);
+        assertEquals(inventoryDTOS.length, 2);
     }
 
     @Test
     void findById() throws Exception {
 
         given(mapper.toInventoryDto(inventoryService.findById(inventoryDTO1.getInventoryId()))).willReturn(inventoryDTO1);
-        MvcResult mvcResult = mockMvc.perform(get("/inventory/" + inventoryDTO1.getInventoryId()))
+        mockMvc.perform(get("/inventory/" + inventoryDTO1.getInventoryId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.inventoryId", is(inventoryDTO1.getInventoryId())))
                 .andExpect(jsonPath("$.filmId", is(inventoryDTO1.getFilmId())))
@@ -119,14 +118,13 @@ class InventoryControllerTest extends ControllerTest {
     }
 
     @Test
-    void deleteById() throws Exception{
+    void deleteById() throws Exception {
         MvcResult mvcResult = mockMvc.perform(delete("/inventory/" + inventory1.getInventoryId()))
                 .andExpect(status().isOk())
                 .andReturn();
         then(inventoryService).should().delete(inventory1.getInventoryId());
         String content = mvcResult.getResponse().getContentAsString();
         assertEquals(content, "inventory with id " + inventory1.getInventoryId() + " deleted");
-
 
 
     }

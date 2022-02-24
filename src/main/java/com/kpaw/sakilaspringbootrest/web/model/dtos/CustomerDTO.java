@@ -4,6 +4,7 @@ import com.kpaw.sakilaspringbootrest.domain.location.Address;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Objects;
 
 public class CustomerDTO {
 
@@ -112,5 +113,25 @@ public class CustomerDTO {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDTO{" +
+                "customerId=" + customerId +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CustomerDTO)) return false;
+        CustomerDTO that = (CustomerDTO) o;
+        return Objects.equals(customerId, that.customerId) && Objects.equals(storeId, that.storeId) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(address, that.address) && Objects.equals(active, that.active) && Objects.equals(createDate, that.createDate) && Objects.equals(lastUpdate, that.lastUpdate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerId, storeId, firstName, lastName, email, address, active, createDate, lastUpdate);
     }
 }
