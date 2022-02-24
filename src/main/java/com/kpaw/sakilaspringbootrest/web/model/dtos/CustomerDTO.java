@@ -31,6 +31,10 @@ public class CustomerDTO {
 
     }
 
+    public CustomerDTO(Short customerId){
+        this.customerId = customerId;
+    }
+
     public CustomerDTO(Short customerId, Byte storeId, String firstName, String lastName, String email, Address address, Boolean active, Timestamp createDate, Date lastUpdate) {
         this.customerId = customerId;
         this.storeId = storeId;
