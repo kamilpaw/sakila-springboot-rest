@@ -117,4 +117,17 @@ public class Payment {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "paymentId=" + paymentId +
+                ", customer=" + customer +
+                ", staff=" + staff +
+                ", rental=" + rental +
+                ", amount=" + amount +
+                ", paymentDate=" + paymentDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
