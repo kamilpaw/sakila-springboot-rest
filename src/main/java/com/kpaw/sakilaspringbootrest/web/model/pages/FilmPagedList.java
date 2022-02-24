@@ -16,4 +16,7 @@ public class FilmPagedList extends PageImpl<Film> {
     public FilmPagedList(List<Film> content) {
         super(content);
     }
+
+
+
 }
