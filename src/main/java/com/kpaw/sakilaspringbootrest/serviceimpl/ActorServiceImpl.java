@@ -23,12 +23,13 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public ActorPagedList findAll(PageRequest pageRequest) {
+    public Page<Actor> findAll(PageRequest pageRequest) {
         Page<Actor> actorPage = actorRepository.findAll(pageRequest);
-        return new ActorPagedList(actorPage.getContent(),
+        return actorPage;
+    /*    return new ActorPagedList(actorPage.getContent(),
                 PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
                 actorPage.getTotalElements());
-    }
+    */}
 
     @Override
     public Actor findById(short theId) {

@@ -2,11 +2,12 @@ package com.kpaw.sakilaspringbootrest.service;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 public interface ActorService {
 
-    ActorPagedList findAll(PageRequest pageRequest);
+    Page<Actor> findAll(PageRequest pageRequest);
 
     Actor findById(short id);
 

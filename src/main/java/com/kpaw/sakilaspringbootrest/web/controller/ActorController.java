@@ -4,6 +4,7 @@ package com.kpaw.sakilaspringbootrest.web.controller;
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
 import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,8 @@ public class ActorController {
     }
 
     @GetMapping("/actors")
-    public ActorPagedList findAll(@RequestParam(required = false) Integer pageNumber,
-                                  @RequestParam(required = false) Integer pageSize) {
+    public Page<Actor> findAll(@RequestParam(required = false) Integer pageNumber,
+                               @RequestParam(required = false) Integer pageSize) {
 
         return actorService.findAll(PageRequest.of(pageNumber(pageNumber), pageSize(pageSize)));
     }
