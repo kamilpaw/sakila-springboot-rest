@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -89,7 +88,7 @@ class FilmControllerTest extends ControllerTest {
 
     @Test
     void findFilmById() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(get("/films/" + film1.getFilmId()))
+        mockMvc.perform(get("/films/" + film1.getFilmId()))
                 .andExpect(status().isOk())
                 .andReturn();
     }
@@ -121,7 +120,7 @@ class FilmControllerTest extends ControllerTest {
 
     @Test
     void deleteFilm() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(delete("/films/" + film1.getFilmId()))
+        mockMvc.perform(delete("/films/" + film1.getFilmId()))
                 .andExpect(status().isOk())
                 .andReturn();
         then(filmService).should().deleteById(film1.getFilmId());

@@ -3,8 +3,6 @@ package com.kpaw.sakilaspringbootrest.serviceimpl;
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
-import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,19 +13,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyShort;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
@@ -45,7 +40,6 @@ class ActorServiceImplTest {
 
     Actor actor, actor1;
     List<Actor> actorList;
-    ActorPagedList actorPagedList;
     Page<Actor> actorPage;
 
     @BeforeEach
@@ -55,88 +49,7 @@ class ActorServiceImplTest {
         actorList = new ArrayList<>();
         actorList.add(actor);
         actorList.add(actor1);
-        actorPagedList = new ActorPagedList(actorList, PageRequest.of(1,1),2);
-        actorPage = new Page<Actor>() {
-            @Override
-            public int getTotalPages() {
-                return 1;
-            }
-
-            @Override
-            public long getTotalElements() {
-                return 2;
-            }
-
-            @Override
-            public <U> Page<U> map(Function<? super Actor, ? extends U> converter) {
-                return null;
-            }
-
-            @Override
-            public int getNumber() {
-                return 1;
-            }
-
-            @Override
-            public int getSize() {
-                return 2;
-            }
-
-            @Override
-            public int getNumberOfElements() {
-                return 2;
-            }
-
-            @Override
-            public List<Actor> getContent() {
-                return actorList;
-            }
-
-            @Override
-            public boolean hasContent() {
-                return true;
-            }
-
-            @Override
-            public Sort getSort() {
-                return Sort.unsorted();
-            }
-
-            @Override
-            public boolean isFirst() {
-                return true;
-            }
-
-            @Override
-            public boolean isLast() {
-                return false;
-            }
-
-            @Override
-            public boolean hasNext() {
-                return false;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return false;
-            }
-
-            @Override
-            public Pageable nextPageable() {
-                return null;
-            }
-
-            @Override
-            public Pageable previousPageable() {
-                return null;
-            }
-
-            @Override
-            public Iterator<Actor> iterator() {
-                return null;
-            }
-        };
+       actorPage = new SetUpPage<>(actorList);
     }
 
 
