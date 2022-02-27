@@ -11,7 +11,4 @@ public class PaymentPagedList extends PageImpl<PaymentDTO> {
         super(content, pageable, total);
     }
 
-    public PaymentPagedList(List<PaymentDTO> content) {
-        super(content);
-    }
 }

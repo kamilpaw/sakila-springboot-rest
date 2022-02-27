@@ -12,7 +12,4 @@ public class RentalPagedList extends PageImpl<RentalDTO> {
         super(content, pageable, total);
     }
 
-    public RentalPagedList(List<RentalDTO> content) {
-        super(content);
-    }
 }

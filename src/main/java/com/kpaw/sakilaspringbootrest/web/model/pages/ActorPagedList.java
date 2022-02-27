@@ -11,7 +11,4 @@ public class ActorPagedList extends PageImpl<Actor> {
         super(content, pageable, total);
     }
 
-    public ActorPagedList(List<Actor> content) {
-        super(content);
-    }
 }

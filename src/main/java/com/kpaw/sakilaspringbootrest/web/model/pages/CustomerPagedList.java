@@ -10,8 +10,4 @@ public class CustomerPagedList extends PageImpl<CustomerDTO> {
     public CustomerPagedList(List<CustomerDTO> content, Pageable pageable, long total) {
         super(content, pageable, total);
     }
-
-    public CustomerPagedList(List<CustomerDTO> content) {
-        super(content);
-    }
 }
