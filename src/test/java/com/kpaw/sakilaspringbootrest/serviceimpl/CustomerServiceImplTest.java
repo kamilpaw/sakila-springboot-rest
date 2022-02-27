@@ -1,10 +1,10 @@
 package com.kpaw.sakilaspringbootrest.serviceimpl;
 
-import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
-import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
-import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
-import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
-import org.junit.jupiter.api.AfterEach;
+import com.kpaw.sakilaspringbootrest.domain.rent.Customer;
+import com.kpaw.sakilaspringbootrest.repository.rental.CustomerRepository;
+import com.kpaw.sakilaspringbootrest.web.mapper.DTOMapper;
+import com.kpaw.sakilaspringbootrest.web.model.dtos.CustomerDTO;
+import com.kpaw.sakilaspringbootrest.web.model.pages.CustomerPagedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,40 +23,45 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
+
 @ExtendWith(MockitoExtension.class)
-class ActorServiceImplTest {
+class CustomerServiceImplTest {
 
     @Mock
-    ActorRepository actorRepository;
+    CustomerRepository customerRepository;
+
+    @Mock
+    DTOMapper mapper;
+
+    @InjectMocks
+    CustomerServiceImpl service;
 
     @Captor
     ArgumentCaptor<PageRequest> captor;
 
-    @InjectMocks
-    ActorServiceImpl service;
-
-    Actor actor, actor1;
-    List<Actor> actorList;
-    ActorPagedList actorPagedList;
-    Page<Actor> actorPage;
+    Customer customer, customer1;
+    CustomerDTO dto;
+    List<Customer> customers;
+    CustomerPagedList pagedList;
+    Page<Customer> page;
 
     @BeforeEach
     void setUp() {
-        actor = new Actor((short) 1, "firstName", "lastName");
-        actor1 = new Actor((short) 2, "firstName", "lastName");
-        actorList = new ArrayList<>();
-        actorList.add(actor);
-        actorList.add(actor1);
-        actorPagedList = new ActorPagedList(actorList, PageRequest.of(1,1),2);
-        actorPage = new Page<Actor>() {
+        customer = new Customer();
+        customer1 = new Customer();
+        customers = new ArrayList<>();
+        customers.add(customer);
+        customers.add(customer1);
+        pagedList = new CustomerPagedList(customers.stream().map(mapper::toCustomerDTO).collect(Collectors.toList()),PageRequest.of(1,1),2);
+        page = new Page<Customer>() {
             @Override
             public int getTotalPages() {
                 return 1;
@@ -68,7 +73,7 @@ class ActorServiceImplTest {
             }
 
             @Override
-            public <U> Page<U> map(Function<? super Actor, ? extends U> converter) {
+            public <U> Page<U> map(Function<? super Customer, ? extends U> converter) {
                 return null;
             }
 
@@ -88,8 +93,8 @@ class ActorServiceImplTest {
             }
 
             @Override
-            public List<Actor> getContent() {
-                return actorList;
+            public List<Customer> getContent() {
+                return customers;
             }
 
             @Override
@@ -133,55 +138,40 @@ class ActorServiceImplTest {
             }
 
             @Override
-            public Iterator<Actor> iterator() {
+            public Iterator<Customer> iterator() {
                 return null;
             }
         };
+        dto = new CustomerDTO();
     }
-
 
     @Test
     void findAll() {
-        given(actorRepository.findAll(captor.capture())).willReturn(actorPage);
+        given(customerRepository.findAll(captor.capture())).willReturn(page);
         service.findAll(captor.capture());
-        then(actorRepository).should().findAll(captor.capture());
-        assertEquals(2, actorRepository.findAll(captor.capture()).getContent().size());
+        then(customerRepository).should().findAll(captor.capture());
+        assertEquals(2, customerRepository.findAll(captor.capture()).getContent().size());
     }
 
     @Test
     void findById() {
-        given(actorRepository.findById(actor.getActorId())).willReturn(Optional.of(actor));
-        service.findById(actor.getActorId());
-        then(actorRepository).should().findById(actor.getActorId());
-        assertThat(actorRepository.findById(actor.getActorId())).isNotEmpty();
-    }
+        given(customerRepository.findById((short) 1)).willReturn(Optional.of(customer));
+        service.findById((short) 1);
+        then(customerRepository).should().findById((short)1);
+        assertThat(customerRepository.findById((short) 1)).isNotEmpty();
 
-    @Test
-    void findByIdNotFound(){
-        Optional<Actor> result = actorRepository.findById(anyShort());
-        if(result.isEmpty()) {
-            assertThrows(EntityNotFoundExc.class, () -> service.findById((short) 1));
-        }
     }
 
     @Test
     void save() {
-        service.save(actor);
-        then(actorRepository).should().save(actor);
+        service.save(dto);
+        then(customerRepository).should().save(mapper.toCustomer(dto));
     }
 
     @Test
     void deleteById() {
-        service.deleteById(actor.getActorId());
-        then(actorRepository).should().deleteById(actor.getActorId());
-    }
-
-    @Test
-    void findActorsByFilmId() {
-        given(actorRepository.findActorsByFilmId(anyInt(),captor.capture())).willReturn(actorPage);
-        service.findActorsByFilmId(anyInt(), captor.capture());
-        then(actorRepository).should().findActorsByFilmId(anyInt(),captor.capture());
-        assertEquals(2, actorRepository.findActorsByFilmId(anyInt(),captor.capture()).getContent().size());
+        service.deleteById((short) 1);
+        then(customerRepository).should().deleteById((short) 1);
     }
 
 }
