@@ -19,7 +19,7 @@ public class Staff {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -29,7 +29,7 @@ public class Staff {
     @Column(name = "email")
     private String email;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
 

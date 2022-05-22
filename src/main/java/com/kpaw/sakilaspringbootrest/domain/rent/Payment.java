@@ -17,15 +17,15 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short paymentId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rental_id")
     private Rental rental;
 

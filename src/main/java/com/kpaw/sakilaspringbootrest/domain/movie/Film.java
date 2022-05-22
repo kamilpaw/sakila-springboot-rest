@@ -26,11 +26,11 @@ public class Film {
     @Column(name = "release_year")
     private Integer releaseYear;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "language_id")
     private Language language;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "original_language_id")
     private Language originalLanguage;
 
@@ -57,13 +57,15 @@ public class Film {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.MERGE)
     @JoinTable(name = "film_actor",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private List<Actor> actors;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.MERGE)
     @JoinTable(name = "film_category",
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))

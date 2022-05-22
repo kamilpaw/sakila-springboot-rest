@@ -13,11 +13,11 @@ public class Store {
     @Column(name = "store_id")
     private Byte storeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_staff_id")
     private Staff managerStaff;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
 

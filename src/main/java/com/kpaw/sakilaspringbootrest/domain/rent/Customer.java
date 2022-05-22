@@ -17,7 +17,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short customerId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
 

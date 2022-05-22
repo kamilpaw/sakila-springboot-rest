@@ -24,14 +24,14 @@ public class Rental {
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @Column(name = "return_date")
     private Timestamp returnDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
