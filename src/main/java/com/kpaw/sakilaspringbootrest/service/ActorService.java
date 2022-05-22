@@ -1,7 +1,6 @@
 package com.kpaw.sakilaspringbootrest.service;
 
 import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
-import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -15,7 +14,7 @@ public interface ActorService {
 
     void deleteById(short id);
 
-    ActorPagedList findActorsByFilmId(int id, PageRequest pageRequest);
+    Page<Actor> findActorsByFilmId(int id, PageRequest pageRequest);
 
-    ActorPagedList findActorsByFirstNameOrLastName(String name, PageRequest pageRequest);
+    Page<Actor> findActorsByFirstNameOrLastName(String name, PageRequest pageRequest);
 }

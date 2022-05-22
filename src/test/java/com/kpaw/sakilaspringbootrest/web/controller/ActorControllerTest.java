@@ -11,6 +11,8 @@ import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -42,7 +44,7 @@ class ActorControllerTest extends ControllerTest {
     Actor actor1;
     Actor actor2;
     List<Actor> actors;
-    ActorPagedList actorPagedList;
+    Page<Actor> actorPagedList;
 
     @Captor
     ArgumentCaptor<PageRequest> pageRequestArgumentCaptor;
@@ -55,7 +57,7 @@ class ActorControllerTest extends ControllerTest {
         actors = new ArrayList<>();
         actors.add(actor1);
         actors.add(actor2);
-        actorPagedList = new ActorPagedList(actors, PageRequest.of(1, 1), 2);
+        actorPagedList = new PageImpl<>(actors, PageRequest.of(1, 1), 2);
 
     }
 

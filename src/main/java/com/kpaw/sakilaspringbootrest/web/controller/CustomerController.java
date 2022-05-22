@@ -34,10 +34,11 @@ public class CustomerController {
         return customerService.findById(customerId);
     }
 
+
     @PostMapping("/customers")
     public CustomerDTO saveNewCustomer(@RequestBody CustomerDTO customerDTO) {
         customerDTO.setCustomerId(null);
-        if (customerDTO.getAddress().getAddressId()==null){
+        if (customerDTO.getAddress().getAddressId() == null) {
             Address address = customerDTO.getAddress();
             addressService.save(address);
         }
@@ -46,7 +47,7 @@ public class CustomerController {
 
     @PutMapping("/customers")
     public CustomerDTO updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        if (customerDTO.getAddress().getAddressId()==null){
+        if (customerDTO.getAddress().getAddressId() == null) {
             Address address = customerDTO.getAddress();
             addressService.save(address);
         }

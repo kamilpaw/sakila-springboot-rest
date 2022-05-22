@@ -14,17 +14,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class DTOMapper {
 
-    private final StoreService storeService;
-    private final FilmService filmService;
-    private final InventoryService inventoryService;
-    private final StaffService staffService;
+    private StoreService storeService;
+    private FilmService filmService;
+    private InventoryService inventoryService;
+    private StaffService staffService;
+
+    DTOMapper() {
+    }
 
     @Autowired
-    DTOMapper(StoreService storeService, FilmService filmService, InventoryService inventoryService,
-              StaffService staffService) {
+    public void setStoreService(StoreService storeService) {
         this.storeService = storeService;
+    }
+
+    @Autowired
+    public void setFilmService(FilmService filmService) {
         this.filmService = filmService;
+    }
+
+    @Autowired
+    public void setInventoryService(InventoryService inventoryService) {
         this.inventoryService = inventoryService;
+    }
+
+    @Autowired
+    public void setStaffService(StaffService staffService) {
         this.staffService = staffService;
     }
 

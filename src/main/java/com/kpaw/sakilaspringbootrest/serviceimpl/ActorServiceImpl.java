@@ -4,7 +4,6 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Actor;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.ActorRepository;
 import com.kpaw.sakilaspringbootrest.service.ActorService;
-import com.kpaw.sakilaspringbootrest.web.model.pages.ActorPagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,12 +23,8 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Page<Actor> findAll(PageRequest pageRequest) {
-        Page<Actor> actorPage = actorRepository.findAll(pageRequest);
-        return actorPage;
-    /*    return new ActorPagedList(actorPage.getContent(),
-                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
-                actorPage.getTotalElements());
-    */}
+        return actorRepository.findAll(pageRequest);
+    }
 
     @Override
     public Actor findById(short theId) {
@@ -51,18 +46,12 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public ActorPagedList findActorsByFilmId(int id, PageRequest pageRequest) {
-        Page<Actor> actorPage = actorRepository.findActorsByFilmId(id, pageRequest);
-        return new ActorPagedList(actorPage.getContent(),
-                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
-                actorPage.getTotalElements());
+    public Page<Actor> findActorsByFilmId(int id, PageRequest pageRequest) {
+        return actorRepository.findActorsByFilmId(id, pageRequest);
     }
 
     @Override
-    public ActorPagedList findActorsByFirstNameOrLastName(String name, PageRequest pageRequest) {
-        Page<Actor> actorPage = actorRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(name, name, pageRequest);
-        return new ActorPagedList(actorPage.getContent(),
-                PageRequest.of(actorPage.getPageable().getPageNumber(), actorPage.getPageable().getPageSize()),
-                actorPage.getTotalElements());
+    public Page<Actor> findActorsByFirstNameOrLastName(String name, PageRequest pageRequest) {
+        return actorRepository.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(name, name, pageRequest);
     }
 }

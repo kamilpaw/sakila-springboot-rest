@@ -5,7 +5,6 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Category;
 import com.kpaw.sakilaspringbootrest.domain.movie.Film;
 import com.kpaw.sakilaspringbootrest.domain.movie.Language;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
-import com.kpaw.sakilaspringbootrest.web.model.pages.FilmPagedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +13,8 @@ import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -52,7 +53,7 @@ class FilmControllerTest extends ControllerTest {
 
     List<Film> filmList;
 
-    FilmPagedList filmPagedList;
+    Page<Film> filmPagedList;
 
 
     @BeforeEach
@@ -68,7 +69,7 @@ class FilmControllerTest extends ControllerTest {
         filmList = new ArrayList<>();
         filmList.add(film1);
         filmList.add(film2);
-        filmPagedList = new FilmPagedList(filmList, PageRequest.of(1, 1), 2);
+        filmPagedList = new PageImpl<>(filmList, PageRequest.of(1, 1), 2);
     }
 
     @AfterEach
@@ -107,7 +108,7 @@ class FilmControllerTest extends ControllerTest {
     }
 
     @Test
-    void updateFilm() throws Exception{
+    void updateFilm() throws Exception {
         MvcResult mvcResult = mockMvc.perform(put("/films/")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapToJson(film1)))

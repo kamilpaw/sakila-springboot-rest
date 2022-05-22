@@ -4,7 +4,6 @@ import com.kpaw.sakilaspringbootrest.domain.movie.Film;
 import com.kpaw.sakilaspringbootrest.exception.EntityNotFoundExc;
 import com.kpaw.sakilaspringbootrest.repository.movie.FilmRepository;
 import com.kpaw.sakilaspringbootrest.service.FilmService;
-import com.kpaw.sakilaspringbootrest.web.model.pages.FilmPagedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,37 +23,24 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public FilmPagedList findAll(PageRequest pageRequest) {
-        Page<Film> filmPage = filmRepository.findAll(pageRequest);
-        return new FilmPagedList(filmPage.getContent(),
-                PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
-                filmPage.getTotalElements());
+    public Page<Film> findAll(PageRequest pageRequest) {
+        return filmRepository.findAll(pageRequest);
     }
 
     @Override
-    public FilmPagedList findFilmsByTitle(String title, PageRequest pageRequest) {
-        Page<Film> filmPage = filmRepository.findByTitleContainsAllIgnoreCase(title, pageRequest);
-        return new FilmPagedList(filmPage.getContent(),
-                PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
-                filmPage.getTotalElements());
+    public Page<Film> findFilmsByTitle(String title, PageRequest pageRequest) {
+        return filmRepository.findByTitleContainsAllIgnoreCase(title, pageRequest);
     }
 
     @Override
-    public FilmPagedList findFilmsByActorId(int id, PageRequest pageRequest) {
-        Page<Film> filmPage = filmRepository.findFilmsByActorId(id, pageRequest);
-        return new FilmPagedList(filmPage.getContent(),
-                PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
-                filmPage.getTotalElements());
+    public Page<Film> findFilmsByActorId(int id, PageRequest pageRequest) {
+        return filmRepository.findFilmsByActorId(id, pageRequest);
     }
 
     @Override
-    public FilmPagedList findFilmsByCategoryId(int id, PageRequest pageRequest) {
-        Page<Film> filmPage = filmRepository.findFilmsByCategoryId(id, pageRequest);
-        return new FilmPagedList(filmPage.getContent(),
-                PageRequest.of(filmPage.getPageable().getPageNumber(), filmPage.getPageable().getPageSize()),
-                filmPage.getTotalElements());
+    public Page<Film> findFilmsByCategoryId(int id, PageRequest pageRequest) {
+        return filmRepository.findFilmsByCategoryId(id, pageRequest);
     }
-
 
     @Override
     public Film findByID(int id) {
@@ -70,12 +56,10 @@ public class FilmServiceImpl implements FilmService {
         filmRepository.save(film);
     }
 
-
     @Override
     public void deleteById(int id) {
         filmRepository.deleteById(id);
     }
-
 
 }
 
