@@ -12,7 +12,7 @@ public class Address {
     @Id
     @Column(name  = "address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short addressId;
+    private Integer addressId;
 
     @Column(name = "address")
     private String address;
@@ -23,7 +23,7 @@ public class Address {
     @Column(name = "district")
     private String district;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
 
@@ -45,28 +45,7 @@ public class Address {
 
     }
 
-    public Address(String address, String address2, String district, City city, String postalCode, String phone, Byte[] location) {
-        this.address = address;
-        this.address2 = address2;
-        this.district = district;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.phone = phone;
-        this.location = location;
-    }
-
-    public Address(Short addressId, String address, String address2, String district, City city, String postalCode, String phone, Byte[] location) {
-        this.addressId = addressId;
-        this.address = address;
-        this.address2 = address2;
-        this.district = district;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.phone = phone;
-        this.location = location;
-    }
-
-    public Address(Short addressId, String address, String address2, String district, City city, String postalCode, String phone, Byte[] location, Date lastUpdate) {
+    public Address(Integer addressId, String address, String address2, String district, City city, String postalCode, String phone, Byte[] location, Date lastUpdate) {
         this.addressId = addressId;
         this.address = address;
         this.address2 = address2;
@@ -78,11 +57,11 @@ public class Address {
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getAddressId() {
+    public Integer getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(Short addressId) {
+    public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
 
@@ -148,14 +127,5 @@ public class Address {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "addressId=" + addressId +
-                ", address='" + address + '\'' +
-                ", city=" + city +
-                '}';
     }
 }

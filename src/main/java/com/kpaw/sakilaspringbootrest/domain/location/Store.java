@@ -11,7 +11,7 @@ public class Store {
 
     @Id
     @Column(name = "store_id")
-    private Byte storeId;
+    private Integer storeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_staff_id")
@@ -30,24 +30,18 @@ public class Store {
 
     }
 
-    public Store(Byte storeId, Staff managerStaff, Address address) {
-        this.storeId = storeId;
-        this.managerStaff = managerStaff;
-        this.address = address;
-    }
-
-    public Store(Byte storeId, Staff managerStaff, Address address, Date lastUpdate) {
+    public Store(Integer storeId, Staff managerStaff, Address address, Date lastUpdate) {
         this.storeId = storeId;
         this.managerStaff = managerStaff;
         this.address = address;
         this.lastUpdate = lastUpdate;
     }
 
-    public Byte getStoreId() {
+    public Integer getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Byte storeId) {
+    public void setStoreId(Integer storeId) {
         this.storeId = storeId;
     }
 
@@ -55,16 +49,16 @@ public class Store {
         return managerStaff;
     }
 
-    public void setManagerStaff(Staff managerStaffId) {
-        this.managerStaff = managerStaffId;
+    public void setManagerStaff(Staff managerStaff) {
+        this.managerStaff = managerStaff;
     }
 
     public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address addressId) {
-        this.address = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Date getLastUpdate() {
@@ -73,15 +67,5 @@ public class Store {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Store{" +
-                "storeId=" + storeId +
-                ", managerStaffId=" + managerStaff +
-                ", addressId=" + address +
-                ", lastUpdate=" + lastUpdate +
-                '}';
     }
 }

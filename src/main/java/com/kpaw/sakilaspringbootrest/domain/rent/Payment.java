@@ -15,7 +15,7 @@ public class Payment {
     @Id
     @Column(name = "payment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short paymentId;
+    private Integer paymentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
@@ -43,16 +43,7 @@ public class Payment {
     public Payment(){
     }
 
-    public Payment(Short paymentId, Customer customer, Staff staff, Rental rental, BigDecimal amount, Timestamp paymentDate) {
-        this.paymentId = paymentId;
-        this.customer = customer;
-        this.staff = staff;
-        this.rental = rental;
-        this.amount = amount;
-        this.paymentDate = paymentDate;
-    }
-
-    public Payment(Short paymentId, Customer customer, Staff staff, Rental rental, BigDecimal amount, Timestamp paymentDate, Date lastUpdate) {
+    public Payment(Integer paymentId, Customer customer, Staff staff, Rental rental, BigDecimal amount, Timestamp paymentDate, Date lastUpdate) {
         this.paymentId = paymentId;
         this.customer = customer;
         this.staff = staff;
@@ -62,11 +53,11 @@ public class Payment {
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getPaymentId() {
+    public Integer getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(Short paymentId) {
+    public void setPaymentId(Integer paymentId) {
         this.paymentId = paymentId;
     }
 
@@ -74,24 +65,24 @@ public class Payment {
         return customer;
     }
 
-    public void setCustomer(Customer customerId) {
-        this.customer = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Staff getStaff() {
         return staff;
     }
 
-    public void setStaff(Staff staffId) {
-        this.staff = staffId;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     public Rental getRental() {
         return rental;
     }
 
-    public void setRental(Rental rentalId) {
-        this.rental = rentalId;
+    public void setRental(Rental rental) {
+        this.rental = rental;
     }
 
     public BigDecimal getAmount() {
@@ -116,18 +107,5 @@ public class Payment {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Payment{" +
-                "paymentId=" + paymentId +
-                ", customer=" + customer +
-                ", staff=" + staff +
-                ", rental=" + rental +
-                ", amount=" + amount +
-                ", paymentDate=" + paymentDate +
-                ", lastUpdate=" + lastUpdate +
-                '}';
     }
 }

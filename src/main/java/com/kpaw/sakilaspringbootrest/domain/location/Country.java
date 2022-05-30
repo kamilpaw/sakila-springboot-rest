@@ -11,7 +11,7 @@ public class Country {
 
     @Id
     @Column(name = "country_id")
-    private Short country_id;
+    private Integer country_id;
 
     @Column(name = "country")
     private String country;
@@ -24,22 +24,17 @@ public class Country {
     public Country(){
     }
 
-    public Country(Short country_id, String country) {
-        this.country_id = country_id;
-        this.country = country;
-    }
-
-    public Country(Short country_id, String country, Date lastUpdate) {
+    public Country(Integer country_id, String country, Date lastUpdate) {
         this.country_id = country_id;
         this.country = country;
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getCountry_id() {
+    public Integer getCountry_id() {
         return country_id;
     }
 
-    public void setCountry_id(Short country_id) {
+    public void setCountry_id(Integer country_id) {
         this.country_id = country_id;
     }
 
@@ -58,5 +53,4 @@ public class Country {
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
-
 }

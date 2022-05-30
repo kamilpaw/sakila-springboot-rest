@@ -12,7 +12,7 @@ public class Actor {
     @Id
     @Column(name = "actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short actorId;
+    private Integer actorId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -28,24 +28,18 @@ public class Actor {
     public Actor() {
     }
 
-    public Actor(Short actorId, String firstName, String lastName) {
-        this.actorId = actorId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Actor(Short actorId, String firstName, String lastName, Date lastUpdate) {
+    public Actor(Integer actorId, String firstName, String lastName, Date lastUpdate) {
         this.actorId = actorId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getActorId() {
+    public Integer getActorId() {
         return actorId;
     }
 
-    public void setActorId(Short actorId) {
+    public void setActorId(Integer actorId) {
         this.actorId = actorId;
     }
 
@@ -71,15 +65,5 @@ public class Actor {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "actorId=" + actorId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", lastUpdate=" + lastUpdate +
-                '}';
     }
 }

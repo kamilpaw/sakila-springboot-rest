@@ -1,6 +1,9 @@
 package com.kpaw.sakilaspringbootrest.domain.movie;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "language")
@@ -8,7 +11,7 @@ public class Language {
 
     @Id
     @Column(name = "language_id")
-    private Byte languageId;
+    private Integer languageId;
 
     @Column(name = "name")
     private String name;
@@ -17,16 +20,16 @@ public class Language {
 
     }
 
-    public Language(Byte languageId, String name) {
+    public Language(Integer languageId, String name) {
         this.languageId = languageId;
         this.name = name;
     }
 
-    public Byte getLanguageId() {
+    public Integer getLanguageId() {
         return languageId;
     }
 
-    public void setLanguageId(Byte languageId) {
+    public void setLanguageId(Integer languageId) {
         this.languageId = languageId;
     }
 
@@ -36,13 +39,5 @@ public class Language {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Language{" +
-                "languageId=" + languageId +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

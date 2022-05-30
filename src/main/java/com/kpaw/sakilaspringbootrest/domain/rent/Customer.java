@@ -15,7 +15,7 @@ public class Customer {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short customerId;
+    private Integer customerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
@@ -49,17 +49,7 @@ public class Customer {
 
     }
 
-    public Customer(Short customerId, Store store, String firstName, String lastName, String email, Address address, Boolean active) {
-        this.customerId = customerId;
-        this.store = store;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
-        this.active = active;
-    }
-
-    public Customer(Short customerId, Store store, String firstName, String lastName, String email, Address address, Boolean active, Timestamp createDate, Date lastUpdate) {
+    public Customer(Integer customerId, Store store, String firstName, String lastName, String email, Address address, Boolean active, Timestamp createDate, Date lastUpdate) {
         this.customerId = customerId;
         this.store = store;
         this.firstName = firstName;
@@ -71,11 +61,11 @@ public class Customer {
         this.lastUpdate = lastUpdate;
     }
 
-    public Short getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Short customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
@@ -83,8 +73,8 @@ public class Customer {
         return store;
     }
 
-    public void setStore(Store storeId) {
-        this.store = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public String getFirstName() {
@@ -115,8 +105,8 @@ public class Customer {
         return address;
     }
 
-    public void setAddress(Address addressId) {
-        this.address = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Boolean getActive() {
@@ -141,17 +131,5 @@ public class Customer {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", createDate=" + createDate +
-                ", lastUpdate=" + lastUpdate +
-                '}';
     }
 }

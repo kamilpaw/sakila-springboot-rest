@@ -11,7 +11,7 @@ public class Staff {
 
     @Id
     @Column(name = "staff_id")
-    private Byte staffId;
+    private Integer staffId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -52,21 +52,7 @@ public class Staff {
 
     }
 
-    public Staff(Byte staffId, String firstName, String lastName, Address address, Byte[] picture, String email, Store store, Boolean active, String username, String password) {
-        this.staffId = staffId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.picture = picture;
-        this.email = email;
-        this.store = store;
-        this.active = active;
-        this.username = username;
-        this.password = password;
-    }
-
-
-    public Staff(Byte staffId, String firstName, String lastName, Address address, Byte[] picture, String email, Store store, Boolean active, String username, String password, Date lastUpdate) {
+    public Staff(Integer staffId, String firstName, String lastName, Address address, Byte[] picture, String email, Store store, Boolean active, String username, String password, Date lastUpdate) {
         this.staffId = staffId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,12 +66,11 @@ public class Staff {
         this.lastUpdate = lastUpdate;
     }
 
-
-    public Byte getStaffId() {
+    public Integer getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Byte staffId) {
+    public void setStaffId(Integer staffId) {
         this.staffId = staffId;
     }
 
@@ -109,8 +94,8 @@ public class Staff {
         return address;
     }
 
-    public void setAddress(Address addressId) {
-        this.address = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Byte[] getPicture() {
@@ -133,8 +118,8 @@ public class Staff {
         return store;
     }
 
-    public void setStore(Store storeId) {
-        this.store = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Boolean getActive() {
@@ -167,15 +152,5 @@ public class Staff {
 
     public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
-    }
-
-    @Override
-    public String toString() {
-        return "Staff{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", addressId=" + address +
-                ", email='" + email + '\'' +
-                '}';
     }
 }

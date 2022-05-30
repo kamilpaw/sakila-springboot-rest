@@ -77,12 +77,4 @@ public class Inventory {
         this.lastUpdate = lastUpdate;
     }
 
-    @Override
-    public String toString() {
-        return "Inventory{" +
-                "inventoryId=" + inventoryId +
-                ", filmId=" + film +
-                ", storeId=" + store +
-                '}';
-    }
 }
