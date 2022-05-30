@@ -1,6 +1,7 @@
 # sakila-springboot-rest
 
-ENDPOINTS
+On branch springdatarest endpoints are created by Spring Data REST.
+On master branch following endpoints:
 
 /films - get/ post/put
 
